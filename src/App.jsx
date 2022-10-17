@@ -17,7 +17,6 @@ function App() {
     const canvas = document.getElementById('myThreeJsCanvas')
     const renderer = new THREE.WebGLRenderer({
       canvas,
-      //antialias: true,
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -35,6 +34,7 @@ function App() {
     scene.add(spotLight);
 
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
+    paintGeometry.antialias = true; 
     const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
     const paintMaterial = new THREE.MeshBasicMaterial({ map: paintTexture });
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
