@@ -35159,6 +35159,7 @@ reactJsxRuntime_production_min.jsxs = q;
 const jsx = jsxRuntime.exports.jsx;
 function App() {
   react.exports.useEffect(() => {
+    let objects = [];
     const scene = new Scene();
     const fov2 = 75;
     const aspect2 = 2;
@@ -35187,11 +35188,27 @@ function App() {
     const paintMaterial = new MeshBasicMaterial({
       map: paintTexture
     });
+    paintMaterial.metalness = 0.5;
+    paintMaterial.roughness = 1;
     const paintMesh = new Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
+    objects.push(paintMesh);
     paintGeometry.userData = {
       URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"
     };
+    document.addEventListener("mousedown", onMouseDown);
+    function onMouseDown(event) {
+      event.preventDefault();
+      const mouse3D = new Vector3(event.clientX / window.innerWidth * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5);
+      const raycaster = new Raycaster();
+      raycaster.setFromCamera(mouse3D, camera);
+      const intersects2 = raycaster.intersectObjects(objects, true);
+      if (intersects2.length > 0) {
+        console.log("click!");
+        intersects2[0].object.material.color.setHex(Math.random() * 16777215);
+      }
+    }
+    document.getElementById("container").appendChild(renderer.domElement);
     const controls = new OrbitControls(camera, renderer.domElement);
     const animate = () => {
       controls.update();
