@@ -35172,7 +35172,6 @@ function App() {
       canvas
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
     const ambientLight = new AmbientLight(16761035, 2);
     ambientLight.castShadow = true;
     ambientLight.physicallyCorrectLights = true;
