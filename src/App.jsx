@@ -7,16 +7,12 @@ function App() {
   useEffect(() => {
     const scene = new THREE.Scene();
 
-    const camera = new THREE.PerspectiveCamera(
-      50,
-      window.innerWidth / window.innerHeight,
-      1,
-      500
-    );
-    camera.position.x = 5;
-    camera.position.z = 0;
-    camera.position.y = 0;
-    camera.lookAt(0, 0, 0);
+    const fov = 75;
+    const aspect = 2;  // the canvas default
+    const near = 0.1;
+    const far = 100;
+    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+    camera.position.z = 5;
 
     const canvas = document.getElementById('myThreeJsCanvas')
     const renderer = new THREE.WebGLRenderer({

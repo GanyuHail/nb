@@ -35160,11 +35160,12 @@ const jsx = jsxRuntime.exports.jsx;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
-    const camera = new PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 500);
-    camera.position.x = 5;
-    camera.position.z = 0;
-    camera.position.y = 0;
-    camera.lookAt(0, 0, 0);
+    const fov2 = 75;
+    const aspect2 = 2;
+    const near = 0.1;
+    const far = 100;
+    const camera = new PerspectiveCamera(fov2, aspect2, near, far);
+    camera.position.z = 5;
     const canvas = document.getElementById("myThreeJsCanvas");
     const renderer = new WebGLRenderer({
       canvas
