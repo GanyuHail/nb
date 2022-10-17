@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
-import GLTFLoader from 'three-gltf-loader';
+//import GLTFLoader from 'three-gltf-loader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 function App() {
@@ -13,9 +13,9 @@ function App() {
       1,
       500
     );
-    camera.position.x = 0;
+    camera.position.x = 5;
     camera.position.z = 0;
-    camera.position.y = 20;
+    camera.position.y = 0;
     camera.lookAt(0, 0, 0);
 
     const canvas = document.getElementById('myThreeJsCanvas')
@@ -38,11 +38,13 @@ function App() {
     spotLight.physicallyCorrectLights = true;
     scene.add(spotLight);
 
-    const loader = new GLTFLoader().setPath('https://raw.githubusercontent.com/GanyuHail/bl3/main/src/');
-    loader.load('baesLogoMaster4.gltf', function (gltf) {
-      //antialias = true; 
-      scene.add(gltf.scene);
-    });
+    const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
+    const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
+    const paintMaterial = new THREE.MeshBasicMaterial({ map: paintTexture });
+    const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
+    scene.add(paintMesh);
+
+    paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
 
     //document.addEventListener('mousedown', onMouseDown);
 
