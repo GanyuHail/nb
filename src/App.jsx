@@ -5,7 +5,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 function App() {
   useEffect(() => {
-    let objects = [];
+    //let objects = [];
 
     const scene = new THREE.Scene();
 
@@ -43,26 +43,24 @@ function App() {
     paintMaterial.roughness = 1;
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
-    objects.push(paintMesh);
+    //objects.push(paintMesh);
 
     paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
 
-    document.addEventListener('mousedown', onMouseDown);
+    //document.addEventListener('mousedown', onMouseDown);
 
-    function onMouseDown(event) {
-      event.preventDefault();
+    //function onMouseDown(event) {
+      //event.preventDefault();
 
-      const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
-      const raycaster = new THREE.Raycaster()
-      raycaster.setFromCamera(mouse3D, camera)
-      const intersects = raycaster.intersectObjects(objects, true);
-      if (intersects.length > 0) {
-        console.log("click!");
-        intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
-      }
-    };
-
-    document.getElementById("container").appendChild(renderer.domElement);
+      //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
+      //const raycaster = new THREE.Raycaster()
+      //raycaster.setFromCamera(mouse3D, camera)
+      //const intersects = raycaster.intersectObjects(objects, true);
+      //if (intersects.length > 0) {
+        //console.log("click!");
+        //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
+      //}
+    //};
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
