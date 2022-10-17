@@ -35165,7 +35165,7 @@ function App() {
     const near = 0.1;
     const far = 100;
     const camera = new PerspectiveCamera(fov2, aspect2, near, far);
-    camera.position.z = 5;
+    camera.position.z = 50;
     const canvas = document.getElementById("myThreeJsCanvas");
     const renderer = new WebGLRenderer({
       canvas
@@ -35195,6 +35195,7 @@ function App() {
     const animate = () => {
       controls.update();
       renderer.render(scene, camera);
+      renderer.setPixelRatio(window.devicePixelRatio);
       window.requestAnimationFrame(animate);
     };
     animate();

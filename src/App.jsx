@@ -8,11 +8,11 @@ function App() {
     const scene = new THREE.Scene();
 
     const fov = 75;
-    const aspect = 2;  // the canvas default
+    const aspect = 2;
     const near = 0.1;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 5;
+    camera.position.z = 50;
 
     const canvas = document.getElementById('myThreeJsCanvas')
     const renderer = new THREE.WebGLRenderer({
@@ -45,16 +45,16 @@ function App() {
     //document.addEventListener('mousedown', onMouseDown);
 
     //function onMouseDown(event) {
-      //event.preventDefault();
-      
-      //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
-      //const raycaster = new THREE.Raycaster()
-      //raycaster.setFromCamera(mouse3D, camera)
-      //const intersects = raycaster.intersectObjects(objects, true);
-      //if (intersects.length > 0) {
-        //console.log("click!");
-        //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
-      //}
+    //event.preventDefault();
+
+    //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
+    //const raycaster = new THREE.Raycaster()
+    //raycaster.setFromCamera(mouse3D, camera)
+    //const intersects = raycaster.intersectObjects(objects, true);
+    //if (intersects.length > 0) {
+    //console.log("click!");
+    //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
+    //}
     //};
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -62,6 +62,7 @@ function App() {
     const animate = () => {
       controls.update();
       renderer.render(scene, camera);
+      renderer.setPixelRatio(window.devicePixelRatio);
       window.requestAnimationFrame(animate);
     };
     animate();
