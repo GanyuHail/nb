@@ -35160,8 +35160,6 @@ const jsx = jsxRuntime.exports.jsx;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
-    windowHalfX = window.innerWidth / 2;
-    windowHalfY = window.innerHeight / 2;
     const fov2 = 75;
     const aspect2 = window.innerWidth / window.innerHeight;
     const near = 0.1;
@@ -35206,8 +35204,6 @@ function App() {
     };
     animate();
     function onWindowResize() {
-      windowHalfX = window.innerWidth / 2;
-      windowHalfY = window.innerHeight / 2;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
