@@ -14,7 +14,7 @@ function App() {
     const fov = 75;
     const aspect = window.innerWidth / window.innerHeight;
     const near = 0.1;
-    const far = 100;
+    const far = 500;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
     camera.position.z = 50;
 
@@ -50,30 +50,54 @@ function App() {
 
     paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
 
-    //document.addEventListener('mousedown', onMouseDown);
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
 
-    //function onMouseDown(event) {
-      //event.preventDefault();
+    window.addEventListener('pointermove', onPointerMove);
+    //window.addEventListener('mouseDown', onMouseDown)
 
-      //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
-      //const raycaster = new THREE.Raycaster()
-      //raycaster.setFromCamera(mouse3D, camera)
-      //const intersects = raycaster.intersectObjects(objects, true);
-      //if (intersects.length > 0) {
-        //console.log("click!");
-        //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
-      //}
+    function onPointerMove(event) {
+      event.preventDefault();
+      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+    };
+
+    //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
+    //const raycaster = new THREE.Raycaster()
+    //raycaster.setFromCamera(mouse3D, camera)
+    //const intersects = raycaster.intersectObjects(objects, true);
+    //if (intersects.length > 0) {
+    //console.log("click!");
+    //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
+    //}
+    //renderer.render( scene, camera );
     //};
+
+    function render() {
+
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(scene.children);
+
+      for (let i = 0; i < intersects.length; i++) {
+
+        intersects[i].object.material.color.set(0xff0000);
+        console.log(onPointerMove);
+      }
+      renderer.render(scene, camera);
+    }
+
+    window.requestAnimationFrame(render);
 
     const controls = new OrbitControls(camera, renderer.domElement);
 
     const animate = () => {
       controls.update();
       renderer.render(scene, camera);
-      //renderer.setPixelRatio(window.devicePixelRatio);
       window.requestAnimationFrame(animate);
     };
     animate();
+
+
 
     function onWindowResize() {
       windowHalfX = window.innerWidth / 2;
@@ -81,7 +105,7 @@ function App() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-  }
+    }
   }, []);
 
   return (
