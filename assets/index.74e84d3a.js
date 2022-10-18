@@ -13892,7 +13892,7 @@ var _uvB = new Vector2();
 var _uvC = new Vector2();
 var _intersectionPoint = new Vector3();
 var _intersectionPointWorld = new Vector3();
-function Mesh(geometry, material) {
+function Mesh$1(geometry, material) {
   Object3D.call(this);
   this.type = "Mesh";
   this.geometry = geometry !== void 0 ? geometry : new BufferGeometry();
@@ -13900,8 +13900,8 @@ function Mesh(geometry, material) {
   this.drawMode = TrianglesDrawMode;
   this.updateMorphTargets();
 }
-Mesh.prototype = Object.assign(Object.create(Object3D.prototype), {
-  constructor: Mesh,
+Mesh$1.prototype = Object.assign(Object.create(Object3D.prototype), {
+  constructor: Mesh$1,
   isMesh: true,
   setDrawMode: function(value) {
     this.drawMode = value;
@@ -15361,7 +15361,7 @@ WebGLRenderTargetCube.prototype.fromEquirectangularTexture = function(renderer, 
     blending: NoBlending
   });
   material.uniforms.tEquirect.value = texture;
-  var mesh = new Mesh(new BoxBufferGeometry(5, 5, 5), material);
+  var mesh = new Mesh$1(new BoxBufferGeometry(5, 5, 5), material);
   scene.add(mesh);
   var camera = new CubeCamera(1, 10, 1);
   camera.renderTarget = this;
@@ -16264,7 +16264,7 @@ function WebGLBackground(renderer, state, objects, premultipliedAlpha) {
     }
     if (background && (background.isCubeTexture || background.isWebGLRenderTargetCube)) {
       if (boxMesh === void 0) {
-        boxMesh = new Mesh(new BoxBufferGeometry(1, 1, 1), new ShaderMaterial({
+        boxMesh = new Mesh$1(new BoxBufferGeometry(1, 1, 1), new ShaderMaterial({
           type: "BackgroundCubeMaterial",
           uniforms: cloneUniforms(ShaderLib.cube.uniforms),
           vertexShader: ShaderLib.cube.vertexShader,
@@ -16297,7 +16297,7 @@ function WebGLBackground(renderer, state, objects, premultipliedAlpha) {
       renderList.unshift(boxMesh, boxMesh.geometry, boxMesh.material, 0, 0, null);
     } else if (background && background.isTexture) {
       if (planeMesh === void 0) {
-        planeMesh = new Mesh(new PlaneBufferGeometry(2, 2), new ShaderMaterial({
+        planeMesh = new Mesh$1(new PlaneBufferGeometry(2, 2), new ShaderMaterial({
           type: "BackgroundMaterial",
           uniforms: cloneUniforms(ShaderLib.background.uniforms),
           vertexShader: ShaderLib.background.vertexShader,
@@ -18672,7 +18672,7 @@ function WebGLShadowMap(_renderer, _objects, maxTextureSize) {
   shadowMaterialHorizonal.defines.HORIZONAL_PASS = 1;
   var fullScreenTri = new BufferGeometry();
   fullScreenTri.setAttribute("position", new BufferAttribute(new Float32Array([-1, -1, 0.5, 3, -1, 0.5, -1, 3, 0.5]), 3));
-  var fullScreenMesh = new Mesh(fullScreenTri, shadowMaterialVertical);
+  var fullScreenMesh = new Mesh$1(fullScreenTri, shadowMaterialVertical);
   var scope = this;
   this.enabled = false;
   this.autoUpdate = true;
@@ -22670,13 +22670,13 @@ function SkinnedMesh(geometry, material) {
   if (geometry && geometry.isGeometry) {
     console.error("THREE.SkinnedMesh no longer supports THREE.Geometry. Use THREE.BufferGeometry instead.");
   }
-  Mesh.call(this, geometry, material);
+  Mesh$1.call(this, geometry, material);
   this.type = "SkinnedMesh";
   this.bindMode = "attached";
   this.bindMatrix = new Matrix4();
   this.bindMatrixInverse = new Matrix4();
 }
-SkinnedMesh.prototype = Object.assign(Object.create(Mesh.prototype), {
+SkinnedMesh.prototype = Object.assign(Object.create(Mesh$1.prototype), {
   constructor: SkinnedMesh,
   isSkinnedMesh: true,
   bind: function(skeleton, bindMatrix) {
@@ -22710,7 +22710,7 @@ SkinnedMesh.prototype = Object.assign(Object.create(Mesh.prototype), {
     }
   },
   updateMatrixWorld: function(force) {
-    Mesh.prototype.updateMatrixWorld.call(this, force);
+    Mesh$1.prototype.updateMatrixWorld.call(this, force);
     if (this.bindMode === "attached") {
       this.bindMatrixInverse.getInverse(this.matrixWorld);
     } else if (this.bindMode === "detached") {
@@ -22814,13 +22814,13 @@ Bone.prototype = Object.assign(Object.create(Object3D.prototype), {
 var _instanceLocalMatrix = new Matrix4();
 var _instanceWorldMatrix = new Matrix4();
 var _instanceIntersects = [];
-var _mesh = new Mesh();
+var _mesh = new Mesh$1();
 function InstancedMesh(geometry, material, count) {
-  Mesh.call(this, geometry, material);
+  Mesh$1.call(this, geometry, material);
   this.instanceMatrix = new BufferAttribute(new Float32Array(count * 16), 16);
   this.count = count;
 }
-InstancedMesh.prototype = Object.assign(Object.create(Mesh.prototype), {
+InstancedMesh.prototype = Object.assign(Object.create(Mesh$1.prototype), {
   constructor: InstancedMesh,
   isInstancedMesh: true,
   getMatrixAt: function(index2, matrix) {
@@ -29777,7 +29777,7 @@ ObjectLoader.prototype = Object.assign(Object.create(Loader.prototype), {
         if (geometry.bones && geometry.bones.length > 0) {
           object = new SkinnedMesh(geometry, material);
         } else {
-          object = new Mesh(geometry, material);
+          object = new Mesh$1(geometry, material);
         }
         break;
       case "InstancedMesh":
@@ -32699,12 +32699,12 @@ function PointLightHelper(light, sphereSize, color) {
   this.color = color;
   var geometry = new SphereBufferGeometry(sphereSize, 4, 2);
   var material = new MeshBasicMaterial({ wireframe: true, fog: false });
-  Mesh.call(this, geometry, material);
+  Mesh$1.call(this, geometry, material);
   this.matrix = this.light.matrixWorld;
   this.matrixAutoUpdate = false;
   this.update();
 }
-PointLightHelper.prototype = Object.create(Mesh.prototype);
+PointLightHelper.prototype = Object.create(Mesh$1.prototype);
 PointLightHelper.prototype.constructor = PointLightHelper;
 PointLightHelper.prototype.dispose = function() {
   this.geometry.dispose();
@@ -32731,7 +32731,7 @@ function RectAreaLightHelper(light, color) {
   var geometry2 = new BufferGeometry();
   geometry2.setAttribute("position", new Float32BufferAttribute(positions2, 3));
   geometry2.computeBoundingSphere();
-  this.add(new Mesh(geometry2, new MeshBasicMaterial({ side: BackSide, fog: false })));
+  this.add(new Mesh$1(geometry2, new MeshBasicMaterial({ side: BackSide, fog: false })));
   this.update();
 }
 RectAreaLightHelper.prototype = Object.create(Line.prototype);
@@ -32774,7 +32774,7 @@ function HemisphereLightHelper(light, size, color) {
   var position = geometry.getAttribute("position");
   var colors = new Float32Array(position.count * 3);
   geometry.setAttribute("color", new BufferAttribute(colors, 3));
-  this.add(new Mesh(geometry, this.material));
+  this.add(new Mesh$1(geometry, this.material));
   this.update();
 }
 HemisphereLightHelper.prototype = Object.create(Object3D.prototype);
@@ -32862,10 +32862,10 @@ function LightProbeHelper(lightProbe, size) {
     ].join("\n")
   });
   var geometry = new SphereBufferGeometry(1, 32, 16);
-  Mesh.call(this, geometry, material);
+  Mesh$1.call(this, geometry, material);
   this.onBeforeRender();
 }
-LightProbeHelper.prototype = Object.create(Mesh.prototype);
+LightProbeHelper.prototype = Object.create(Mesh$1.prototype);
 LightProbeHelper.prototype.constructor = LightProbeHelper;
 LightProbeHelper.prototype.dispose = function() {
   this.geometry.dispose();
@@ -33333,7 +33333,7 @@ function PlaneHelper(plane, size, hex) {
   var geometry2 = new BufferGeometry();
   geometry2.setAttribute("position", new Float32BufferAttribute(positions2, 3));
   geometry2.computeBoundingSphere();
-  this.add(new Mesh(geometry2, new MeshBasicMaterial({ color, opacity: 0.2, transparent: true, depthWrite: false })));
+  this.add(new Mesh$1(geometry2, new MeshBasicMaterial({ color, opacity: 0.2, transparent: true, depthWrite: false })));
 }
 PlaneHelper.prototype = Object.create(Line.prototype);
 PlaneHelper.prototype.constructor = PlaneHelper;
@@ -33372,7 +33372,7 @@ function ArrowHelper(dir, origin, length, color, headLength, headWidth) {
   this.line = new Line(_lineGeometry, new LineBasicMaterial({ color }));
   this.line.matrixAutoUpdate = false;
   this.add(this.line);
-  this.cone = new Mesh(_coneGeometry, new MeshBasicMaterial({ color }));
+  this.cone = new Mesh$1(_coneGeometry, new MeshBasicMaterial({ color }));
   this.cone.matrixAutoUpdate = false;
   this.add(this.cone);
   this.setDirection(dir);
@@ -35191,7 +35191,7 @@ function App() {
     });
     paintMaterial.metalness = 0.5;
     paintMaterial.roughness = 1;
-    const paintMesh = new Mesh(paintGeometry, paintMaterial);
+    const paintMesh = new Mesh$1(paintGeometry, paintMaterial);
     scene.add(paintMesh);
     paintGeometry.userData = {
       URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"
@@ -35206,7 +35206,7 @@ function App() {
     }
     function render() {
       raycaster.setFromCamera(pointer, camera);
-      const intersects2 = raycaster.intersectObjects(scene.children, true);
+      const intersects2 = raycaster.intersectObjects(Mesh, true);
       for (let i = 0; i < intersects2.length; i++) {
         intersects2[i].object.material.color.set(5623292);
         console.log(intersects2[i]);
