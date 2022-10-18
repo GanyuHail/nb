@@ -35205,11 +35205,13 @@ function App() {
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
     }
     function render() {
+      let objects = [];
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         intersects2[i].objects.material.color.set(16711680);
         console.log(intersects2[i]);
+        console.log(objects);
       }
       renderer.render(scene, camera);
     }
