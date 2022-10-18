@@ -50,7 +50,6 @@ function App() {
 
     paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
 
-<<<<<<< HEAD
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
 
@@ -73,45 +72,6 @@ function App() {
     //}
     //renderer.render( scene, camera );
     //};
-=======
-    //window.addEventListener( 'pointermove', onPointerMove);
-    window.addEventListener( 'mouseDown', onMouseDown)
-
-    function onMouseDown(event) {
-      event.preventDefault();
-      window.addEventListener( 'pointermove', onPointerMove);
-
-      function onPointerMove(event) {
-        event.preventDefault();
-        pointer.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        pointer.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-      };
-
-      const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
-      const raycaster = new THREE.Raycaster()
-      raycaster.setFromCamera(mouse3D, camera)
-      const intersects = raycaster.intersectObjects(objects, true);
-      if (intersects.length > 0) {
-        console.log("click!");
-        intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
-      }
-      renderer.render( scene, camera );
-    };
-
-    //function render() {
-
-      //raycaster.setFromCamera( pointer, camera );
-      //const intersects = raycaster.intersectObjects( scene.children );
-    
-      //for ( let i = 0; i < intersects.length; i ++) {
-    
-        //intersects[i] && mouseDown === true.
-        //object.material.color.set( 0xff0000 );
-        //console.log(onPointerMove);
-      //};
-
-    window.requestAnimationFrame(render);
->>>>>>> refs/remotes/origin/main
 
     function render() {
 
@@ -121,7 +81,6 @@ function App() {
       for (let i = 0; i < intersects.length; i++) {
 
         intersects[i].object.material.color.set(0xff0000);
-        console.log(onPointerMove);
       }
       renderer.render(scene, camera);
     }
