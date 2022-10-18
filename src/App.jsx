@@ -9,8 +9,10 @@ function App() {
 
     const scene = new THREE.Scene();
 
+    let windowHalfX = window.innerWidth / 2;
+    let windowHalfY = window.innerHeight / 2;
     const fov = 75;
-    const aspect = 2;
+    const aspect = window.innerWidth / window.innerHeight;
     const near = 0.1;
     const far = 100;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
@@ -20,7 +22,8 @@ function App() {
     const renderer = new THREE.WebGLRenderer({
       canvas,
     });
-
+    window.addEventListener('resize', onWindowResize, false);
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
@@ -71,6 +74,14 @@ function App() {
       window.requestAnimationFrame(animate);
     };
     animate();
+
+    function onWindowResize() {
+      windowHalfX = window.innerWidth / 2;
+      windowHalfY = window.innerHeight / 2;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+  }
   }, []);
 
   return (

@@ -35161,7 +35161,7 @@ function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
     const fov2 = 75;
-    const aspect2 = 2;
+    const aspect2 = window.innerWidth / window.innerHeight;
     const near = 0.1;
     const far = 100;
     const camera = new PerspectiveCamera(fov2, aspect2, near, far);
@@ -35170,6 +35170,8 @@ function App() {
     const renderer = new WebGLRenderer({
       canvas
     });
+    window.addEventListener("resize", onWindowResize, false);
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     const ambientLight = new AmbientLight(16761035, 2);
@@ -35201,6 +35203,11 @@ function App() {
       window.requestAnimationFrame(animate);
     };
     animate();
+    function onWindowResize() {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
   }, []);
   return /* @__PURE__ */ jsx("div", {
     children: /* @__PURE__ */ jsx("canvas", {
