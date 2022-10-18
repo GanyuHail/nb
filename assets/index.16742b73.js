@@ -35160,12 +35160,10 @@ const jsx = jsxRuntime.exports.jsx;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
-    HEIGHT = window.innerHeight;
-    WIDTH = window.innerWidth;
-    windowHalfX = WIDTH / 2;
-    windowHalfY = HEIGHT / 2;
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
     const fov2 = 75;
-    const aspect2 = WIDTH / HEIGHT;
+    const aspect2 = window.innerWidth / window.innerHeight;
     const near = 0.1;
     const far = 100;
     const camera = new PerspectiveCamera(fov2, aspect2, near, far);
@@ -35176,7 +35174,7 @@ function App() {
     });
     window.addEventListener("resize", onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(WIDTH, HEIGHT);
+    renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     const ambientLight = new AmbientLight(16761035, 2);
     ambientLight.castShadow = true;
