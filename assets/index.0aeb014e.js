@@ -34621,7 +34621,7 @@ var OrbitControls = function(object, domElement) {
   }();
   this.dispose = function() {
     scope.domElement.removeEventListener("contextmenu", onContextMenu, false);
-    scope.domElement.removeEventListener("mousedown", onMouseDown, false);
+    scope.domElement.removeEventListener("mousedown", onMouseDown2, false);
     scope.domElement.removeEventListener("wheel", onMouseWheel, false);
     scope.domElement.removeEventListener("touchstart", onTouchStart, false);
     scope.domElement.removeEventListener("touchend", onTouchEnd, false);
@@ -34889,7 +34889,7 @@ var OrbitControls = function(object, domElement) {
     if (scope.enableRotate)
       handleTouchMoveRotate(event);
   }
-  function onMouseDown(event) {
+  function onMouseDown2(event) {
     if (scope.enabled === false)
       return;
     event.preventDefault();
@@ -35102,7 +35102,7 @@ var OrbitControls = function(object, domElement) {
     event.preventDefault();
   }
   scope.domElement.addEventListener("contextmenu", onContextMenu, false);
-  scope.domElement.addEventListener("mousedown", onMouseDown, false);
+  scope.domElement.addEventListener("mousedown", onMouseDown2, false);
   scope.domElement.addEventListener("wheel", onMouseWheel, false);
   scope.domElement.addEventListener("touchstart", onTouchStart, false);
   scope.domElement.addEventListener("touchend", onTouchEnd, false);
@@ -35163,7 +35163,7 @@ function App() {
     const fov2 = 75;
     const aspect2 = window.innerWidth / window.innerHeight;
     const near = 0.1;
-    const far = 100;
+    const far = 500;
     const camera = new PerspectiveCamera(fov2, aspect2, near, far);
     camera.position.z = 50;
     const canvas = document.getElementById("myThreeJsCanvas");
@@ -35196,6 +35196,25 @@ function App() {
     paintGeometry.userData = {
       URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"
     };
+    const raycaster = new Raycaster();
+    const pointer = new Vector2();
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("mouseDown", onMouseDown);
+    function onPointerMove(event) {
+      event.preventDefault();
+      pointer.x = event.clientX / window.innerWidth * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+    function render() {
+      raycaster.setFromCamera(pointer, camera);
+      const intersects2 = raycaster.intersectObjects(scene.children);
+      for (let i = 0; i < intersects2.length; i++) {
+        intersects2[i].object.material.color.set(16711680);
+        console.log(onPointerMove);
+      }
+      renderer.render(scene, camera);
+    }
+    window.requestAnimationFrame(render);
     const controls = new OrbitControls(camera, renderer.domElement);
     const animate = () => {
       controls.update();
