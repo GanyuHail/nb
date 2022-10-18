@@ -35206,7 +35206,7 @@ function App() {
     }
     function render() {
       raycaster.setFromCamera(pointer, camera);
-      const intersects2 = raycaster.intersectObjects(scene.children);
+      const intersects2 = raycaster.intersectObjects(scene.BoxGeometry);
       for (let i = 0; i < intersects2.length; i++) {
         intersects2[i].object.material.color.set(16711680);
         console.log(intersects2[i]);
