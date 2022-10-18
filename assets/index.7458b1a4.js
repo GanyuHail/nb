@@ -35202,12 +35202,14 @@ function App() {
       event.preventDefault();
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      console.log(event);
     }
     function render() {
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children);
       for (let i = 0; i < intersects2.length; i++) {
         intersects2[i].object.material.color.set(16711680);
+        console.log(onPointerMove);
       }
       renderer.render(scene, camera);
     }
