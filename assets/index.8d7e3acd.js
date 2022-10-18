@@ -35196,6 +35196,22 @@ function App() {
     paintGeometry.userData = {
       URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"
     };
+    const raycaster = new Raycaster();
+    const pointer = new Vector2();
+    function onPointerMove(event) {
+      pointer.x = event.clientX / window.innerWidth * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+    function render() {
+      raycaster.setFromCamera(pointer, camera);
+      const intersects2 = raycaster.intersectObjects(scene.children);
+      for (let i = 0; i < intersects2.length; i++) {
+        intersects2[i].object.material.color.set(16711680);
+      }
+      renderer.render(scene, camera);
+    }
+    window.addEventListener("pointermove", onPointerMove);
+    window.requestAnimationFrame(render);
     const controls = new OrbitControls(camera, renderer.domElement);
     const animate = () => {
       controls.update();
