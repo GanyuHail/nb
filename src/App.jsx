@@ -67,7 +67,7 @@ function App() {
     const animate = () => {
       controls.update();
       renderer.render(scene, camera);
-      renderer.setPixelRatio(window.devicePixelRatio);
+      //renderer.setPixelRatio(window.devicePixelRatio);
       window.requestAnimationFrame(animate);
     };
     animate();
