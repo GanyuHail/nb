@@ -73,14 +73,16 @@ function App() {
     //renderer.render( scene, camera );
     //};
 
-    function render() {
+    let objects = [];
 
+    function render() {
       raycaster.setFromCamera(pointer, camera);
-      const intersects = raycaster.intersectObjects(scene.children);
+      const intersects = raycaster.intersectObjects(scene.Mesh, true);
 
       for (let i = 0; i < intersects.length; i++) {
-
-        intersects[i].object.material.color.set(0xff0000);
+        intersects[i].object.material.color.set(0x55CDFC);
+        console.log(intersects[i]);
+        console.log(scene.children);
       }
       renderer.render(scene, camera);
     }
@@ -95,8 +97,6 @@ function App() {
       window.requestAnimationFrame(animate);
     };
     animate();
-
-
 
     function onWindowResize() {
       windowHalfX = window.innerWidth / 2;
