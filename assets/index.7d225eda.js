@@ -35209,9 +35209,12 @@ function App() {
       console.log(scene);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
-        intersects2[i].object.material.color.set(5623292);
-        console.log(intersects2[i]);
-        console.log(scene.children);
+        const intersect = intersects2[i];
+        if (intersect && intersect.object) {
+          intersects2[i].object.material.color.set(5623292);
+          console.log(intersects2[i]);
+          console.log(scene.children);
+        }
       }
       renderer.render(scene, camera);
     }
