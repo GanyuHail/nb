@@ -35227,8 +35227,9 @@ function App() {
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
+        console.log(intersect);
         if (intersect && intersect.object) {
-          window.open("http://net-informations.com");
+          window.open("http://google.com");
         }
       }
     }
