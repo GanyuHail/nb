@@ -35222,8 +35222,8 @@ function App() {
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      const intersects2 = raycaster.intersectObjects(scene.children, true);
-      if (intersects2.length > 0 && onMouseDown === true) {
+      const intersectsClick = raycaster.intersectObjects(scene.children, true);
+      if (intersectsClick.length > 0 && onMouseDown === true) {
         self.location = "http://net-informations.com";
       }
     }
