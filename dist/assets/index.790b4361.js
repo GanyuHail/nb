@@ -35203,7 +35203,7 @@ function App() {
     window.addEventListener("mouseDown", onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
-        selectedObject.material.color.set(5623292);
+        selectedObject.material.color.set("pink");
         selectedObject = null;
       }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
@@ -35221,10 +35221,14 @@ function App() {
     function onMouseDown(event) {
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      console.log(onMouseDown(event));
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
-      if (intersects2.length > 0 && onMouseDown === true) {
-        window.open("google.com");
+      for (let i = 0; i < intersects2.length; i++) {
+        const intersect = intersects2[i];
+        if (intersect && intersect.object) {
+          window.open("http://net-informations.com");
+        }
       }
     }
     function render() {

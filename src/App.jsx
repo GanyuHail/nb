@@ -55,15 +55,13 @@ function App() {
     const pointer = new THREE.Vector2();
 
     window.addEventListener('pointermove', onPointerMove);
-    window.addEventListener('mouseDown', onMouseDown)
+    window.addEventListener('mouseDown', onMouseDown);
 
     function onPointerMove(event) {
-      //event.preventDefault();
-
-      if ( selectedObject ) {
-				selectedObject.material.color.set(0x55CDFC);
-				selectedObject = null;
-			}
+      if (selectedObject) {
+        selectedObject.material.color.set('pink');
+        selectedObject = null;
+      }
 
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
@@ -84,25 +82,28 @@ function App() {
       //event.preventDefault();
 
       //if ( clickObject ) {
-				//clickObject.window.open('google.com');
-				//clickObject = null;
-			//}
-
+      //clickObject.window.open('google.com');
+      //clickObject = null;
+      //}
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      console.log(onMouseDown(event));
 
       raycaster.setFromCamera(pointer, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
 
-      if (intersects.length > 0 && onMouseDown === true) {
-          window.open('google.com');
+      for (let i = 0; i < intersects.length; i++) {
+        const intersect = intersects[i];
+        if (intersect && intersect.object) {
+          window.open("http://net-informations.com");
+          //self.location = "http://net-informations.com";
+        }
       }
     };
 
     function render() {
-
       renderer.render(scene, camera);
-    }
+    };
 
     window.requestAnimationFrame(render);
 
