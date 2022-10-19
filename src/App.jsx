@@ -4,7 +4,6 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let selectedObject = null;
-let clickObject = null;
 
 function App() {
   useEffect(() => {
@@ -56,6 +55,7 @@ function App() {
 
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('mouseDown', onMouseDown);
+    console.log(onMouseDown);
 
     function onPointerMove(event) {
       if (selectedObject) {
@@ -71,6 +71,7 @@ function App() {
 
       for (let i = 0; i < intersects.length; i++) {
         const intersect = intersects[i];
+
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
           intersect.object.material.color.set('white');
@@ -78,25 +79,23 @@ function App() {
       }
     };
 
-    function onMouseDown(event) {
-      //event.preventDefault();
+    function onMouseDown(e) {
+      if (selectedObject) {
 
-      //if ( clickObject ) {
-      //clickObject.window.open('google.com');
-      //clickObject = null;
-      //}
-      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-      pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
-      console.log(onMouseDown(event));
+        pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
+        pointer.y = - (e.clientY / window.innerHeight) * 2 + 1;
+        console.log(onMouseDown(e));
 
-      raycaster.setFromCamera(pointer, camera);
-      const intersects = raycaster.intersectObjects(scene.children, true);
+        raycaster.setFromCamera(pointer, camera);
+        const intersects = raycaster.intersectObjects(scene.children, true);
 
-      for (let i = 0; i < intersects.length; i++) {
-        const intersect = intersects[i];
-        if (intersect && intersect.object) {
-          window.open("http://net-informations.com");
-          //self.location = "http://net-informations.com";
+        for (let i = 0; i < intersects.length; i++) {
+          const intersect = intersects[i];
+
+          console.log(intersect);
+          if (intersect && intersect.object) {
+            window.open("http://google.com");
+          }
         }
       }
     };
