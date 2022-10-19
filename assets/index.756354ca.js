@@ -35200,7 +35200,7 @@ function App() {
     const raycaster = new Raycaster();
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("mouseDown", onMouseDown(e));
+    window.addEventListener("mouseDown", onMouseDown);
     console.log(onMouseDown(e));
     function onPointerMove(event) {
       if (selectedObject) {
@@ -35222,12 +35222,10 @@ function App() {
     function onMouseDown(e2) {
       pointer.x = e2.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(e2.clientY / window.innerHeight) * 2 + 1;
-      console.log(onMouseDown(e2));
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
-        console.log(intersect);
         if (intersect && intersect.object) {
           window.open("http://google.com");
         }
