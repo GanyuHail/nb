@@ -34621,7 +34621,7 @@ var OrbitControls = function(object, domElement) {
   }();
   this.dispose = function() {
     scope.domElement.removeEventListener("contextmenu", onContextMenu, false);
-    scope.domElement.removeEventListener("mousedown", onMouseDown2, false);
+    scope.domElement.removeEventListener("mousedown", onMouseDown, false);
     scope.domElement.removeEventListener("wheel", onMouseWheel, false);
     scope.domElement.removeEventListener("touchstart", onTouchStart, false);
     scope.domElement.removeEventListener("touchend", onTouchEnd, false);
@@ -34889,7 +34889,7 @@ var OrbitControls = function(object, domElement) {
     if (scope.enableRotate)
       handleTouchMoveRotate(event);
   }
-  function onMouseDown2(event) {
+  function onMouseDown(event) {
     if (scope.enabled === false)
       return;
     event.preventDefault();
@@ -35102,7 +35102,7 @@ var OrbitControls = function(object, domElement) {
     event.preventDefault();
   }
   scope.domElement.addEventListener("contextmenu", onContextMenu, false);
-  scope.domElement.addEventListener("mousedown", onMouseDown2, false);
+  scope.domElement.addEventListener("mousedown", onMouseDown, false);
   scope.domElement.addEventListener("wheel", onMouseWheel, false);
   scope.domElement.addEventListener("touchstart", onTouchStart, false);
   scope.domElement.addEventListener("touchend", onTouchEnd, false);
@@ -35200,7 +35200,6 @@ function App() {
     const raycaster = new Raycaster();
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("mouseDown", onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
         selectedObject.material.color.set(5623292);
