@@ -77,12 +77,17 @@ function App() {
 
     function render() {
       raycaster.setFromCamera(pointer, camera);
-      const intersects = raycaster.intersectObjects(scene.Mesh, true);
+      console.log(scene);
+      const intersects = raycaster.intersectObjects(scene.children, true);
 
       for (let i = 0; i < intersects.length; i++) {
-        intersects[i].object.material.color.set(0x55CDFC);
-        console.log(intersects[i]);
-        console.log(scene.children);
+        const intersect = intersects[i];
+        if (intersect && intersect.object) {
+          intersects[i].object.material.color.set(0x55CDFC);
+          console.log(intersects[i]);
+          console.log(scene.children);
+        }
+
       }
       renderer.render(scene, camera);
     }
