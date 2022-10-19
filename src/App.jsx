@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let selectedObject = null;
+let clickObject = null;
 
 function App() {
   useEffect(() => {
@@ -54,7 +55,7 @@ function App() {
     const pointer = new THREE.Vector2();
 
     window.addEventListener('pointermove', onPointerMove);
-    //window.addEventListener('mouseDown', onMouseDown)
+    window.addEventListener('mouseDown', onMouseDown)
 
     function onPointerMove(event) {
       //event.preventDefault();
@@ -74,8 +75,27 @@ function App() {
         const intersect = intersects[i];
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
-          intersect.object.material.color.set('pink');
+          intersect.object.material.color.set('white');
         }
+      }
+    };
+
+    function onMouseDown(event) {
+      //event.preventDefault();
+
+      //if ( clickObject ) {
+				//clickObject.window.open('google.com');
+				//clickObject = null;
+			//}
+
+      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(scene.children, true);
+
+      if (intersects.length > 0 && onMouseDown === true) {
+          window.open('google.com');
       }
     };
 
