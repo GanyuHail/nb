@@ -35186,13 +35186,13 @@ function App() {
     scene.add(spotLight);
     const paintGeometry = new BoxGeometry(50, 50, 1);
     paintGeometry.antialias = true;
-    paintGeometry.material.color.set("pink");
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const paintMaterial = new MeshBasicMaterial({
       map: paintTexture
     });
     paintMaterial.metalness = 0.5;
     paintMaterial.roughness = 1;
+    paintMaterial.material.color.set("pink");
     const paintMesh = new Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
     paintGeometry.userData = {
