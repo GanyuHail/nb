@@ -35201,21 +35201,19 @@ function App() {
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
     function onPointerMove(event) {
-      event.preventDefault();
       if (selectedObject) {
-        selectedObject.material.color.set("#000");
+        selectedObject.material.color.set(5623292);
         selectedObject = null;
       }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      console.log(scene);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
-          intersect.object.material.color.set(5623292);
+          intersect.object.material.color.set("pink");
           console.log(intersects2[i]);
           console.log(scene.children);
         }
