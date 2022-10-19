@@ -35221,7 +35221,7 @@ function App() {
     }
     function onMouseDown(event) {
       if (clickObject) {
-        window.open("google.com");
+        clickObject.window.open("google.com");
         clickObject = null;
       }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
