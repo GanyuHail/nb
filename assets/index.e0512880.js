@@ -35200,6 +35200,7 @@ function App() {
     const raycaster = new Raycaster();
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("mouseDown", onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
         selectedObject.material.color.set(5623292);
@@ -35214,6 +35215,23 @@ function App() {
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
           intersect.object.material.color.set("white");
+        }
+      }
+    }
+    function onMouseDown(event) {
+      if (clickObject) {
+        window.open("google.com");
+        clickObject = null;
+      }
+      pointer.x = event.clientX / window.innerWidth * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const intersects2 = raycaster.intersectObjects(scene.children, true);
+      for (let i = 0; i < intersects2.length; i++) {
+        const intersect = intersects2[i];
+        if (intersect && onMouseDown === true) {
+          selectedObject = intersect.object;
+          window.open("google.com");
         }
       }
     }
