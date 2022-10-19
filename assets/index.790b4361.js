@@ -35192,7 +35192,6 @@ function App() {
     });
     paintMaterial.metalness = 0.5;
     paintMaterial.roughness = 1;
-    paintMaterial.material.color.set("pink");
     const paintMesh = new Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
     paintGeometry.userData = {
