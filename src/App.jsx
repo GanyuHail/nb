@@ -4,6 +4,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let selectedObject = null;
+let clickedObject = null;
 
 function App() {
   useEffect(() => {
@@ -80,11 +81,12 @@ function App() {
     };
 
     function onMouseDown(e) {
-      if (selectedObject) {
+      if (clickedObject) {
+        window.open("http://google.com");
+      }
 
         pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
         pointer.y = - (e.clientY / window.innerHeight) * 2 + 1;
-        console.log(onMouseDown(e));
 
         raycaster.setFromCamera(pointer, camera);
         const intersects = raycaster.intersectObjects(scene.children, true);
@@ -92,12 +94,10 @@ function App() {
         for (let i = 0; i < intersects.length; i++) {
           const intersect = intersects[i];
 
-          console.log(intersect);
           if (intersect && intersect.object) {
             window.open("http://google.com");
           }
         }
-      }
     };
 
     function render() {
