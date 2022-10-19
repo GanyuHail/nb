@@ -3,6 +3,8 @@ import * as THREE from 'three';
 //import GLTFLoader from 'three-gltf-loader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
+let selectedObject = null;
+
 function App() {
   useEffect(() => {
     //let objects = [];
@@ -57,38 +59,37 @@ function App() {
     //window.addEventListener('mouseDown', onMouseDown)
 
     function onPointerMove(event) {
-      event.preventDefault();
+      //event.preventDefault();
+
+      if ( selectedObject ) {
+
+				selectedObject.material.color.set(0x55CDFC);
+				selectedObject = null;
+
+			}
+
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
-    };
 
-    //const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerheight) * 2 - 1, 0.5)
-    //const raycaster = new THREE.Raycaster()
-    //raycaster.setFromCamera(mouse3D, camera)
-    //const intersects = raycaster.intersectObjects(objects, true);
-    //if (intersects.length > 0) {
-    //console.log("click!");
-    //intersects[0].object.material.color.setHex(Math.random() * 0xffffff)
-    //}
-    //renderer.render( scene, camera );
-    //};
-
-    let objects = [];
-
-    function render() {
       raycaster.setFromCamera(pointer, camera);
-      console.log(scene);
+      //console.log(scene);
       const intersects = raycaster.intersectObjects(scene.children, true);
 
       for (let i = 0; i < intersects.length; i++) {
         const intersect = intersects[i];
         if (intersect && intersect.object) {
-          intersects[i].object.material.color.set(0x55CDFC);
+          selectedObject = intersect.object;
+          intersect.object.material.color.set('pink');
           console.log(intersects[i]);
           console.log(scene.children);
         }
-
       }
+    };
+
+    //let objects = [];
+
+    function render() {
+
       renderer.render(scene, camera);
     }
 
