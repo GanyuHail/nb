@@ -35157,6 +35157,7 @@ reactJsxRuntime_production_min.jsxs = q;
   }
 })(jsxRuntime);
 const jsx = jsxRuntime.exports.jsx;
+let selectedObject = null;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
@@ -35201,21 +35202,26 @@ function App() {
     window.addEventListener("pointermove", onPointerMove);
     function onPointerMove(event) {
       event.preventDefault();
+      if (selectedObject) {
+        selectedObject.material.color.set("#69f");
+        selectedObject = null;
+      }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    }
-    function render() {
       raycaster.setFromCamera(pointer, camera);
       console.log(scene);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
         if (intersect && intersect.object) {
-          intersects2[i].object.material.color.set(5623292);
+          selectedObject = intersect.object;
+          intersect.object.material.color.set(5623292);
           console.log(intersects2[i]);
           console.log(scene.children);
         }
       }
+    }
+    function render() {
       renderer.render(scene, camera);
     }
     window.requestAnimationFrame(render);
