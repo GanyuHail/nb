@@ -35202,7 +35202,6 @@ function App() {
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("mouseDown", onMouseDown);
     console.log(onMouseDown);
-    const intersects2 = raycaster.intersectObjects(scene.children, true);
     function onPointerMove(event) {
       if (selectedObject) {
         selectedObject.material.color.set("pink");
@@ -35211,6 +35210,7 @@ function App() {
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
+      const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
         if (intersect && intersect.object) {
@@ -35220,18 +35220,16 @@ function App() {
       }
     }
     function onMouseDown(e) {
-      if (selectedObject) {
-        pointer.x = e.clientX / window.innerWidth * 2 - 1;
-        pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
-        console.log(onMouseDown(e));
-        raycaster.setFromCamera(pointer, camera);
-        const intersects22 = raycaster.intersectObjects(scene.children, true);
-        for (let i = 0; i < intersects22.length; i++) {
-          const intersect = intersects22[i];
-          console.log(intersect);
-          if (intersect && intersect.object) {
-            window.open("http://google.com");
-          }
+      pointer.x = e.clientX / window.innerWidth * 2 - 1;
+      pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      console.log(onMouseDown(e));
+      raycaster.setFromCamera(pointer, camera);
+      const intersects2 = raycaster.intersectObjects(scene.children, true);
+      for (let i = 0; i < intersects2.length; i++) {
+        const intersect = intersects2[i];
+        console.log(intersect);
+        if (intersect && intersect.object) {
+          window.open("http://google.com");
         }
       }
     }
