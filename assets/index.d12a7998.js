@@ -35224,7 +35224,7 @@ function App() {
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       if (intersects2.length > 0 && onMouseDown === true) {
-        window.open("google.com");
+        self.location = "http://net-informations.com";
       }
     }
     function render() {
