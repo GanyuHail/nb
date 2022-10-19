@@ -35186,7 +35186,6 @@ function App() {
     scene.add(spotLight);
     const paintGeometry = new BoxGeometry(50, 50, 1);
     paintGeometry.antialias = true;
-    paintGeometry.rotation.y = 0.5 * Math.PI;
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const paintMaterial = new MeshBasicMaterial({
       map: paintTexture
