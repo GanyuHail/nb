@@ -34621,7 +34621,7 @@ var OrbitControls = function(object, domElement) {
   }();
   this.dispose = function() {
     scope.domElement.removeEventListener("contextmenu", onContextMenu, false);
-    scope.domElement.removeEventListener("mousedown", onMouseDown, false);
+    scope.domElement.removeEventListener("mousedown", onMouseDown2, false);
     scope.domElement.removeEventListener("wheel", onMouseWheel, false);
     scope.domElement.removeEventListener("touchstart", onTouchStart, false);
     scope.domElement.removeEventListener("touchend", onTouchEnd, false);
@@ -34889,7 +34889,7 @@ var OrbitControls = function(object, domElement) {
     if (scope.enableRotate)
       handleTouchMoveRotate(event);
   }
-  function onMouseDown(event) {
+  function onMouseDown2(event) {
     if (scope.enabled === false)
       return;
     event.preventDefault();
@@ -35102,7 +35102,7 @@ var OrbitControls = function(object, domElement) {
     event.preventDefault();
   }
   scope.domElement.addEventListener("contextmenu", onContextMenu, false);
-  scope.domElement.addEventListener("mousedown", onMouseDown, false);
+  scope.domElement.addEventListener("mousedown", onMouseDown2, false);
   scope.domElement.addEventListener("wheel", onMouseWheel, false);
   scope.domElement.addEventListener("touchstart", onTouchStart, false);
   scope.domElement.addEventListener("touchend", onTouchEnd, false);
@@ -35219,21 +35219,15 @@ function App() {
         }
       }
     }
-    function onMouseDown(e) {
-      pointer.x = e.clientX / window.innerWidth * 2 - 1;
-      pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
-      console.log(onMouseDown(e));
-      raycaster.setFromCamera(pointer, camera);
-      const intersects2 = raycaster.intersectObjects(scene.children, true);
-      for (let i = 0; i < intersects2.length; i++) {
-        const intersect = intersects2[i];
-        console.log(intersect);
-        if (intersect && intersect.object) {
-          window.open("http://google.com");
-        }
-      }
-    }
     function render() {
+      raycaster.setFromCamera(mouse, camera);
+      var intersects2 = raycaster.intersectObjects(scene.children);
+      if (intersects2.length > 0) {
+        console.log(intersects2);
+      }
+      for (var i = 0; i < intersects2.length; i++) {
+        intersects2[i].window.open("http://google.com");
+      }
       renderer.render(scene, camera);
     }
     window.requestAnimationFrame(render);
