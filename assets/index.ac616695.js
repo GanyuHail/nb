@@ -35158,7 +35158,6 @@ reactJsxRuntime_production_min.jsxs = q;
 })(jsxRuntime);
 const jsx = jsxRuntime.exports.jsx;
 let selectedObject = null;
-let clickObject = null;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
@@ -35220,20 +35219,12 @@ function App() {
       }
     }
     function onMouseDown(event) {
-      if (clickObject) {
-        clickObject.window.open("google.com");
-        clickObject = null;
-      }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
-      for (let i = 0; i < intersects2.length; i++) {
-        const intersect = intersects2[i];
-        if (intersect && onMouseDown === true) {
-          clickObject = intersect.object;
-          window.open("google.com");
-        }
+      if (intersects2.length > 0 && onMouseDown === true) {
+        window.open("google.com");
       }
     }
     function render() {
