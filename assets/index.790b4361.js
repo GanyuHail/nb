@@ -24420,7 +24420,7 @@ function cureLocalIntersections(start, triangles, dim) {
   var p2 = start;
   do {
     var a = p2.prev, b = p2.next.next;
-    if (!equals(a, b) && intersects$1(a, p2, p2.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
+    if (!equals(a, b) && intersects(a, p2, p2.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
       triangles.push(a.i / dim);
       triangles.push(p2.i / dim);
       triangles.push(b.i / dim);
@@ -24602,7 +24602,7 @@ function area(p2, q2, r2) {
 function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
 }
-function intersects$1(p1, q1, p2, q2) {
+function intersects(p1, q1, p2, q2) {
   if (equals(p1, p2) && equals(q1, q2) || equals(p1, q2) && equals(p2, q1))
     return true;
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
@@ -24610,7 +24610,7 @@ function intersects$1(p1, q1, p2, q2) {
 function intersectsPolygon(a, b) {
   var p2 = a;
   do {
-    if (p2.i !== a.i && p2.next.i !== a.i && p2.i !== b.i && p2.next.i !== b.i && intersects$1(p2, p2.next, a, b))
+    if (p2.i !== a.i && p2.next.i !== a.i && p2.i !== b.i && p2.next.i !== b.i && intersects(p2, p2.next, a, b))
       return true;
     p2 = p2.next;
   } while (p2 !== a);
@@ -35219,12 +35219,13 @@ function App() {
       }
     }
     function onMouseDown(event) {
-      console.log(onMouseDown(event));
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      console.log(onMouseDown(event));
       raycaster.setFromCamera(pointer, camera);
-      for (let i = 0; i < intersects.length; i++) {
-        const intersect = intersects[i];
+      const intersects2 = raycaster.intersectObjects(scene.children, true);
+      for (let i = 0; i < intersects2.length; i++) {
+        const intersect = intersects2[i];
         if (intersect && intersect.object) {
           window.open("http://net-informations.com");
         }
