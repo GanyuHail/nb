@@ -14083,13 +14083,13 @@ Mesh.prototype = Object.assign(Object.create(Object3D.prototype), {
   }
 });
 function checkIntersection(object, material, raycaster, ray, pA, pB, pC, point) {
-  var intersect2;
+  var intersect;
   if (material.side === BackSide) {
-    intersect2 = ray.intersectTriangle(pC, pB, pA, true, point);
+    intersect = ray.intersectTriangle(pC, pB, pA, true, point);
   } else {
-    intersect2 = ray.intersectTriangle(pA, pB, pC, material.side !== DoubleSide, point);
+    intersect = ray.intersectTriangle(pA, pB, pC, material.side !== DoubleSide, point);
   }
-  if (intersect2 === null)
+  if (intersect === null)
     return null;
   _intersectionPointWorld.copy(point);
   _intersectionPointWorld.applyMatrix4(object.matrixWorld);
@@ -22527,12 +22527,12 @@ Sprite.prototype = Object.assign(Object.create(Object3D.prototype), {
     _uvA$1.set(0, 0);
     _uvB$1.set(1, 0);
     _uvC$1.set(1, 1);
-    var intersect2 = raycaster.ray.intersectTriangle(_vA$1, _vB$1, _vC$1, false, _intersectPoint);
-    if (intersect2 === null) {
+    var intersect = raycaster.ray.intersectTriangle(_vA$1, _vB$1, _vC$1, false, _intersectPoint);
+    if (intersect === null) {
       transformVertex(_vB$1.set(-0.5, 0.5, 0), _mvPosition, center, _worldScale, sin, cos);
       _uvB$1.set(0, 1);
-      intersect2 = raycaster.ray.intersectTriangle(_vA$1, _vC$1, _vB$1, false, _intersectPoint);
-      if (intersect2 === null) {
+      intersect = raycaster.ray.intersectTriangle(_vA$1, _vC$1, _vB$1, false, _intersectPoint);
+      if (intersect === null) {
         return;
       }
     }
@@ -24420,7 +24420,7 @@ function cureLocalIntersections(start, triangles, dim) {
   var p2 = start;
   do {
     var a = p2.prev, b = p2.next.next;
-    if (!equals(a, b) && intersects(a, p2, p2.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
+    if (!equals(a, b) && intersects$1(a, p2, p2.next, b) && locallyInside(a, b) && locallyInside(b, a)) {
       triangles.push(a.i / dim);
       triangles.push(p2.i / dim);
       triangles.push(b.i / dim);
@@ -24602,7 +24602,7 @@ function area(p2, q2, r2) {
 function equals(p1, p2) {
   return p1.x === p2.x && p1.y === p2.y;
 }
-function intersects(p1, q1, p2, q2) {
+function intersects$1(p1, q1, p2, q2) {
   if (equals(p1, p2) && equals(q1, q2) || equals(p1, q2) && equals(p2, q1))
     return true;
   return area(p1, q1, p2) > 0 !== area(p1, q1, q2) > 0 && area(p2, q2, p1) > 0 !== area(p2, q2, q1) > 0;
@@ -24610,7 +24610,7 @@ function intersects(p1, q1, p2, q2) {
 function intersectsPolygon(a, b) {
   var p2 = a;
   do {
-    if (p2.i !== a.i && p2.next.i !== a.i && p2.i !== b.i && p2.next.i !== b.i && intersects(p2, p2.next, a, b))
+    if (p2.i !== a.i && p2.next.i !== a.i && p2.i !== b.i && p2.next.i !== b.i && intersects$1(p2, p2.next, a, b))
       return true;
     p2 = p2.next;
   } while (p2 !== a);
@@ -35211,10 +35211,10 @@ function App() {
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
-        const intersect2 = intersects2[i];
-        if (intersect2 && intersect2.object) {
-          selectedObject = intersect2.object;
-          intersect2.object.material.color.set("white");
+        const intersect = intersects2[i];
+        if (intersect && intersect.object) {
+          selectedObject = intersect.object;
+          intersect.object.material.color.set("white");
         }
       }
     }
@@ -35223,8 +35223,11 @@ function App() {
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
-      if (intersect && intersect.object) {
-        window.open("http://net-informations.com");
+      for (let i = 0; i < intersects.length; i++) {
+        const intersect = intersects[i];
+        if (intersect && intersect.object) {
+          window.open("http://net-informations.com");
+        }
       }
     }
     function render() {
