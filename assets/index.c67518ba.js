@@ -35219,6 +35219,7 @@ function App() {
       }
     }
     function onMouseDown(event) {
+      console.log(onMouseDown);
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
       pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       console.log(onMouseDown(event));
