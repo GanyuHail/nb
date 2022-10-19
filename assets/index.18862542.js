@@ -35213,7 +35213,7 @@ function App() {
         const intersect = intersects2[i];
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
-          intersect.object.material.color.set("pink");
+          intersect.object.material.color.set("white");
         }
       }
     }
