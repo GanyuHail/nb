@@ -35203,7 +35203,7 @@ function App() {
     function onPointerMove(event) {
       event.preventDefault();
       if (selectedObject) {
-        selectedObject.material.color.set("#69f");
+        selectedObject.material.color.set(null);
         selectedObject = null;
       }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
