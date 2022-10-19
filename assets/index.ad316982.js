@@ -35158,6 +35158,7 @@ reactJsxRuntime_production_min.jsxs = q;
 })(jsxRuntime);
 const jsx = jsxRuntime.exports.jsx;
 let selectedObject = null;
+let clickObject = null;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
@@ -35230,7 +35231,7 @@ function App() {
       for (let i = 0; i < intersects2.length; i++) {
         const intersect = intersects2[i];
         if (intersect && onMouseDown === true) {
-          selectedObject = intersect.object;
+          clickObject = intersect.object;
           window.open("google.com");
         }
       }
