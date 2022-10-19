@@ -35214,8 +35214,6 @@ function App() {
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
           intersect.object.material.color.set("pink");
-          console.log(intersects2[i]);
-          console.log(scene.children);
         }
       }
     }

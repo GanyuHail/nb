@@ -7,7 +7,6 @@ let selectedObject = null;
 
 function App() {
   useEffect(() => {
-    //let objects = [];
 
     const scene = new THREE.Scene();
 
@@ -48,7 +47,6 @@ function App() {
     paintMaterial.roughness = 1;
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
-    //objects.push(paintMesh);
 
     paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
 
@@ -62,17 +60,14 @@ function App() {
       //event.preventDefault();
 
       if ( selectedObject ) {
-
 				selectedObject.material.color.set(0x55CDFC);
 				selectedObject = null;
-
 			}
 
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
       raycaster.setFromCamera(pointer, camera);
-      //console.log(scene);
       const intersects = raycaster.intersectObjects(scene.children, true);
 
       for (let i = 0; i < intersects.length; i++) {
@@ -80,13 +75,9 @@ function App() {
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
           intersect.object.material.color.set('pink');
-          console.log(intersects[i]);
-          console.log(scene.children);
         }
       }
     };
-
-    //let objects = [];
 
     function render() {
 
