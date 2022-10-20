@@ -35200,7 +35200,7 @@ function App() {
     const raycaster = new Raycaster();
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("click", onMouseDown);
     console.log(onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
