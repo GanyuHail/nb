@@ -1,4 +1,4 @@
-// @ts-check
+// //@ts-check
 
 import { useEffect } from 'react';
 import * as THREE from 'three';
@@ -84,7 +84,7 @@ function App() {
     function onMouseDown(event) {
       console.log('hello');
       if (selectedObject) {
-        window.location = "/nb/page2.html";
+        window.location.href = "/nb/dist/page2.html";
       }
     };
 
