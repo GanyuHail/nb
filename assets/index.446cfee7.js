@@ -35200,7 +35200,7 @@ function App() {
     const raycaster = new Raycaster();
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
-    window.addEventListener("mouseDown", onMouseDown);
+    window.addEventListener("mousedown", onMouseDown);
     console.log(onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
@@ -35219,9 +35219,9 @@ function App() {
         }
       }
     }
-    function onMouseDown(e) {
-      pointer.x = e.clientX / window.innerWidth * 2 - 1;
-      pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    function onMouseDown(event) {
+      pointer.x = event.clientX / window.innerWidth * 2 - 1;
+      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera(pointer, camera);
       const intersects2 = raycaster.intersectObjects(scene.children, true);
       for (let i = 0; i < intersects2.length; i++) {
