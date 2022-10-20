@@ -35220,15 +35220,8 @@ function App() {
       }
     }
     function onMouseDown(event) {
-      pointer.x = event.clientX / window.innerWidth * 2 - 1;
-      pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      raycaster.setFromCamera(pointer, camera);
-      const intersects2 = raycaster.intersectObjects(scene.children, true);
-      for (let i = 0; i < intersects2.length; i++) {
-        const intersect = intersects2[i];
-        if (intersect && intersect.object) {
-          window.open("http://google.com");
-        }
+      if (selectedObject) {
+        window.location = "http://google.com";
       }
     }
     function render() {
