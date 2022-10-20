@@ -1,10 +1,11 @@
+// @ts-check
+
 import { useEffect } from 'react';
 import * as THREE from 'three';
 //import GLTFLoader from 'three-gltf-loader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let selectedObject = null;
-let clickedObject = null;
 
 function App() {
   useEffect(() => {
@@ -55,12 +56,12 @@ function App() {
     const pointer = new THREE.Vector2();
 
     window.addEventListener('pointermove', onPointerMove);
-    window.addEventListener('mouseDown', onMouseDown);
+    window.addEventListener('click', onMouseDown);
     console.log(onMouseDown);
 
     function onPointerMove(event) {
       if (selectedObject) {
-        selectedObject.material.color.set('pink');
+        selectedObject.material.color.set('white');
         selectedObject = null;
       }
 
@@ -75,29 +76,16 @@ function App() {
 
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
-          intersect.object.material.color.set('white');
+          intersect.object.material.color.set('pink');
         }
       }
     };
 
-    function onMouseDown(e) {
-      if (clickedObject) {
-        window.open("http://google.com");
+    function onMouseDown(event) {
+      console.log('hello');
+      if (selectedObject) {
+        window.location = "/nb/page2.html";
       }
-
-        pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
-        pointer.y = - (e.clientY / window.innerHeight) * 2 + 1;
-
-        raycaster.setFromCamera(pointer, camera);
-        const intersects = raycaster.intersectObjects(scene.children, true);
-
-        for (let i = 0; i < intersects.length; i++) {
-          const intersect = intersects[i];
-
-          if (intersect && intersect.object) {
-            window.open("http://google.com");
-          }
-        }
     };
 
     function render() {
