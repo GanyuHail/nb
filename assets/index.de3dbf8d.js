@@ -35220,8 +35220,9 @@ function App() {
       }
     }
     function onMouseDown(event) {
+      console.log("hello");
       if (selectedObject) {
-        window.location = "http://google.com";
+        window.location = "/page2.html";
       }
     }
     function render() {
