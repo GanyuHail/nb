@@ -35204,7 +35204,7 @@ function App() {
     console.log(onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
-        selectedObject.material.color.set("pink");
+        selectedObject.material.color.set("white");
         selectedObject = null;
       }
       pointer.x = event.clientX / window.innerWidth * 2 - 1;
@@ -35215,7 +35215,7 @@ function App() {
         const intersect = intersects2[i];
         if (intersect && intersect.object) {
           selectedObject = intersect.object;
-          intersect.object.material.color.set("white");
+          intersect.object.material.color.set("pink");
         }
       }
     }
