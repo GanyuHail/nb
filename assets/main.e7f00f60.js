@@ -35201,7 +35201,7 @@ function App() {
     const pointer = new Vector2();
     window.addEventListener("pointermove", onPointerMove);
     window.addEventListener("click", onMouseDown);
-    window.addEventListener("touchend", touchEnd);
+    window.addEventListener("touchstart", touchStart);
     console.log(onMouseDown);
     function onPointerMove(event) {
       if (selectedObject) {
@@ -35226,7 +35226,7 @@ function App() {
         window.location.href = "/nb/page2.html";
       }
     }
-    function touchEnd(event) {
+    function touchStart(event) {
       console.log("hello");
       if (selectedObject) {
         window.location.href = "/nb/page2.html";
