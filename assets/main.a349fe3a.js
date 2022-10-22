@@ -35306,7 +35306,7 @@ function App() {
     const renderer = new WebGLRenderer({
       canvas
     });
-    renderer.xr.enabled = true;
+    renderer.xrCompatible = true;
     window.addEventListener("resize", onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
