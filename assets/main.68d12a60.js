@@ -35293,6 +35293,7 @@ reactJsxRuntime_production_min.jsxs = q;
   }
 })(jsxRuntime);
 const jsx = jsxRuntime.exports.jsx;
+let selectedObject = null;
 function App() {
   react.exports.useEffect(() => {
     const scene = new Scene();
@@ -35307,6 +35308,7 @@ function App() {
       canvas
     });
     renderer.xrCompatible = true;
+    renderer.antialias = true;
     window.addEventListener("resize", onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
