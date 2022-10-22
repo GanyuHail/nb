@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 import * as THREE from 'three';
-//import GLTFLoader from 'three-gltf-loader';
+import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-let selectedObject = null;
+let selectedObject = null; 
 
 function App() {
   useEffect(() => {
@@ -25,10 +25,13 @@ function App() {
     const renderer = new THREE.WebGLRenderer({
       canvas,
     });
+    renderer.xrCompatible = true;
+    renderer.antialias = true; 
     window.addEventListener('resize', onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
+    document.body.appendChild(VRButton.createButton(renderer));
 
     const ambientLight = new THREE.AmbientLight(0xFFC0CB, 1);
     ambientLight.castShadow = true;
@@ -106,10 +109,15 @@ function App() {
 
     const animate = () => {
       controls.update();
+      //renderer.setAnimationLoop();
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
     };
     animate();
+
+    renderer.setAnimationLoop( function () {
+      renderer.render( scene, camera );
+    } );
 
     function onWindowResize() {
       windowHalfX = window.innerWidth / 2;
