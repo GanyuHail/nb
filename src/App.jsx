@@ -19,7 +19,7 @@ function App() {
     const near = 0.1;
     const far = 500;
     const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.z = 50;
+    camera.position.z = 80;
 
     const canvas = document.getElementById('myThreeJsCanvas')
     const renderer = new THREE.WebGLRenderer({
@@ -30,7 +30,7 @@ function App() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0xFFC0CB, 2);
+    const ambientLight = new THREE.AmbientLight(0xFFC0CB, 1);
     ambientLight.castShadow = true;
     ambientLight.physicallyCorrectLights = true;
     scene.add(ambientLight);
@@ -57,7 +57,7 @@ function App() {
 
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', onMouseDown);
-    window.addEventListener('touchend', touchEnd);
+    window.addEventListener('touchstart', touchStart);
     console.log(onMouseDown);
 
     function onPointerMove(event) {
@@ -89,7 +89,7 @@ function App() {
       }
     };
 
-    function touchEnd(event) {
+    function touchStart(event) {
       console.log('hello');
       if (selectedObject) {
         window.location.href = "/nb/page2.html";
