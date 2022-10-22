@@ -12,7 +12,9 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         nested: resolve(__dirname, 'page2.html'),
-        nested2: resolve(__dirname, 'styles.css')
+        nested2: resolve(__dirname, 'styles.css'),
+        nested3: resolve(__dirname, 'page3.html'),
+        nested4: resolve(__dirname, 'dropDown.js')
       }
     }
   }
