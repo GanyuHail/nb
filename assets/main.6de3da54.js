@@ -35376,7 +35376,6 @@ function App() {
     const controls = new OrbitControls(camera, renderer.domElement);
     const animate = () => {
       controls.update();
-      renderer.setAnimationLoop();
       renderer.render(scene, camera);
       window.requestAnimationFrame(animate);
     };
