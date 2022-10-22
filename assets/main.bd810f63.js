@@ -35382,6 +35382,9 @@ function App() {
       window.requestAnimationFrame(animate);
     };
     animate();
+    renderer.setAnimationLoop(function() {
+      renderer.render(scene, camera);
+    });
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
