@@ -5,7 +5,7 @@
     background-size: cover;
     width: 100vh;
     height: 100vh;
-    overflow: auto;
+    overflow: hidden;
 }
 
 /* Dropdown Button */
