@@ -2,11 +2,8 @@
     background-color: #FFEE99;
     background-repeat: no-repeat;
     margin-bottom: 12px;
-    background: url("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
-    background-repeat: none;
-    background-position: left top;
+    background: url("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg") no-repeat center fixed;
     background-size: cover;
-    background-repeat: no-repeat;
     width: 100vh;
     height: 100vh;
     overflow: auto;
