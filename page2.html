@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="favicon" href="https://raw.githubusercontent.com/GanyuHail/nb/main/src/favicon-32x32.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <title>no gender</title>
-    <link rel="stylesheet" href="./assets/styles.42ebfd30.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <div class="dropdown image">
-      <button onclick="myFunction()" class="dropbtn" href="https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"></button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#">Link 1</a>
-        <a href="#">Link 2</a>
-        <a href="#">Link 3</a>
-      </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="favicon" href="https://raw.githubusercontent.com/GanyuHail/nb/main/src/favicon-32x32.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>no gender</title>
+  <link rel="stylesheet" href="./assets/styles.42ebfd30.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <div class="dropdown image">
+    <button onclick="myFunction()" class="dropbtn"
+      href="https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg"></button>
+    <div id="myDropdown" class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
     </div>
-    <!--<div class="image"></div>-->
-  </body>
+  </div>
+  <!--<div class="image"></div>-->
+  <script>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+  </script>
+</body>
+
 </html>
