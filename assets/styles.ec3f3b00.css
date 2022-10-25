@@ -8,7 +8,6 @@
 
 .image {
     background-color: #FFEE99;
-    
     background: url("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg") no-repeat center fixed;
     background-size: cover;
     width: 100vh;
@@ -25,7 +24,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
-    position: center;
+    text-align: center;
   }
 
 /* Dropdown button on hover & focus */
