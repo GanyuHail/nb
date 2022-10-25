@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Warang+Citi&display=swap');
-.placeholder {
+#placeholder {
   font-family: 'Noto Sans Warang Citi', sans-serif;
   font-size: 100px;
 }
 .image {
     background-color: #FFEE99;
-    margin-bottom: 12px;
+    
     background: url("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg") no-repeat center fixed;
     background-size: cover;
     width: 100vh;
@@ -20,6 +20,7 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    position: center;
   }
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
