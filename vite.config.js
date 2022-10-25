@@ -14,7 +14,8 @@ export default defineConfig({
         nested: resolve(__dirname, 'page2.html'),
         nested2: resolve(__dirname, 'styles.css'),
         nested3: resolve(__dirname, 'page3.html'),
-        nested4: resolve(__dirname, 'dropDown.js')
+        nested4: resolve(__dirname, 'dropDown.js'),
+        nested5: resolve(__dirname, 'page4.html')
       }
     }
   }
