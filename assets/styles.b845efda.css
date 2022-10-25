@@ -4,7 +4,7 @@
     background: url("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg") no-repeat center fixed;
     background-size: cover;
     max-width: 100%;
-    height: auto;
+    height: 100%;
     overflow: hidden;
 }
 
