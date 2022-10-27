@@ -1,9 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Warang+Citi&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+
 
 #placeholder {
-  font-family: 'Noto Sans Warang Citi', sans-serif;
-  font-size: 100px;
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
   position: center; 
+  color: #F5A9B8;
 }
 
 .image {
@@ -17,7 +20,7 @@
 
 /* Dropdown Button */
 .dropbtn {
-    background-color: #3498DB;
+    background-color: #5BCEFA;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -42,7 +45,9 @@
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    background-color: #F5A9B8;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -50,7 +55,8 @@
   
   /* Links inside the dropdown */
   .dropdown-content a {
-    color: black;
+    color: #FFFFFF;
+    font-family: 'Merriweather', serif;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
