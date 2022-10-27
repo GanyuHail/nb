@@ -27,6 +27,7 @@
     cursor: pointer;
     text-align: center;
     margin: 0 auto;
+    margin-top: 50%;
   }
 
 /* Dropdown button on hover & focus */
