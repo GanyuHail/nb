@@ -27,7 +27,7 @@
     cursor: pointer;
     text-align: center;
     margin: 0 auto;
-    margin-top: 50%;
+    margin-top: 10px; 
   }
 
 /* Dropdown button on hover & focus */
