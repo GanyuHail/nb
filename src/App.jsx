@@ -51,6 +51,8 @@ function App() {
     paintMaterial.metalness = 0.5;
     paintMaterial.roughness = 1;
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
+    console.log(paintMesh.rotation.y)
+    paintMesh.rotation.y += 0.01; 
     scene.add(paintMesh);
 
     paintGeometry.userData = { URL: "https://github.com/GanyuHail/nb/blob/main/src/weOpMin.jpg" };
