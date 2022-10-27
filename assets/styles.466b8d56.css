@@ -26,10 +26,8 @@
     cursor: pointer;
     text-align: center;
     margin: 0 auto;
-    top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-
   }
 
 /* Dropdown button on hover & focus */
