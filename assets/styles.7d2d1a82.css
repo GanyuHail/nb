@@ -41,8 +41,7 @@
     display: flex; 
     justify-content: center;
     /* vertical-align: middle; */
-    padding-top: 50vh;
-    padding-bottom: 50vh;
+    padding-top: calc(~"50vh - 51px");
   }
 
 /* Dropdown Content (Hidden by Default) */
