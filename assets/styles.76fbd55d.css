@@ -40,7 +40,7 @@
 .dropdown {
     display: flex; 
     justify-content: center;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     padding-top: 50vh;
   }
 
