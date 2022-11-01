@@ -37,7 +37,7 @@
   .dropdown {
     display: flex; 
     justify-content: center;
-    margin-top: 50%;
+    margin-top: 50vh;
   }
   
   /* Dropdown Content (Hidden by Default) */
