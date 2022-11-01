@@ -37,8 +37,8 @@
   .dropdown {
     display: flex; 
     justify-content: center;
-    vertical-align: middle;
-    padding-top: 50vh;
+    /* vertical-align: middle; */
+    padding-top: calc(50vh - 51px);
   }
   
   /* Dropdown Content (Hidden by Default) */
