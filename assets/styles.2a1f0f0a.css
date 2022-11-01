@@ -41,7 +41,8 @@
     display: flex; 
     justify-content: center;
     /* vertical-align: middle; */
-    padding-top: 48vh;
+    padding-top: 50vh;
+    padding-bottom: 50vh;
   }
 
 /* Dropdown Content (Hidden by Default) */
