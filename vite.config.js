@@ -15,7 +15,8 @@ export default defineConfig({
         nested2: resolve(__dirname, 'styles.css'),
         nested3: resolve(__dirname, 'page3.html'),
         nested4: resolve(__dirname, 'dropDown.js'),
-        nested5: resolve(__dirname, 'page4.html')
+        nested5: resolve(__dirname, 'page4.html'),
+        nested6: resolve(__dirname, 'paypal.js')
       }
     }
   }
