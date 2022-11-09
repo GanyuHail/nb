@@ -27775,10 +27775,10 @@ function App() {
     camera.position.z = 80;
     const canvas = document.getElementById("myThreeJsCanvas");
     const renderer = new WebGLRenderer({
-      canvas
+      canvas,
+      antialias: true
     });
     renderer.xrCompatible = true;
-    renderer.antialias = true;
     window.addEventListener("resize", onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -27840,6 +27840,9 @@ function App() {
       }
     }
     function render() {
+      cleanIntersected();
+      intersectObjects(controller1);
+      intersectObjects(controller2);
       renderer.render(scene, camera);
     }
     window.requestAnimationFrame(render);
