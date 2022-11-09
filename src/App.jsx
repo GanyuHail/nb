@@ -3,7 +3,8 @@
 import { useEffect } from 'react';
 import * as THREE from 'three';
 import { VRButton } from 'three/examples/jsm/webxr/VRButton.js';
-// import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory.js';
+//import { WebXRManager } from 'three/src/renderers/webvr/WebXRManager.js';
+//import { XRControllerModelFactory } from 'three/examples/jsm/webxr/XRControllerModelFactory';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 let selectedObject = null;
@@ -214,10 +215,10 @@ function App() {
 
     function render() {
 
-      cleanIntersected();
+      // cleanIntersected();
 
-      intersectObjects( controller1 );
-      intersectObjects( controller2 );
+      // intersectObjects(controller1);
+      // intersectObjects(controller2);
 
       renderer.render(scene, camera);
     };
