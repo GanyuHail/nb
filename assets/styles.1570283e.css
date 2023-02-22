@@ -2,11 +2,46 @@
 
 #placeholder {
   font-family: 'Hind Siliguri', sans-serif;
-  font-size: 52px;
+  font-size: 60px;
   position: center;
   color: #F5A9B8;
   text-align: justify;
   margin-left: 10vh;
+}
+#background {
+  height: 100%;
+  width: 100%;
+  left:0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+background: linear-gradient(124deg, #A16CB3, #B36CA1, #FFFFFF, #e3e81d, #6CA1B3, #1ddde8, #FF85F6, #E233FF, #dd00f3);
+background-size: 1800% 1800%;
+
+-webkit-animation: rainbow 18s ease infinite;
+-z-animation: rainbow 18s ease infinite;
+-o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;}
+@-webkit-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-moz-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@-o-keyframes rainbow {
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
+}
+@keyframes rainbow { 
+    0%{background-position:0% 82%}
+    50%{background-position:100% 19%}
+    100%{background-position:0% 82%}
 }
 .cb {
   padding: 16px;
@@ -94,7 +129,7 @@
 .show {
   display: block;
 }
-@media screen and (min-width: 600px) {
+@media all and (max-width: 767px) {
   #placeholder {
     font-size: 20px;
   }
