@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap');
 
 #placeholder {
-  font-family: 'Merriweather', serif;
-  font-size: 28px;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-size: 52px;
   position: center;
   color: #F5A9B8;
+  text-align: center;
 }
-
 .cb {
   padding: 16px;
   display: flex;
@@ -16,19 +16,16 @@
   padding-top: 10em;
   justify-content: center;
 }
-
 .cb .rainbow {
   display: none;
   position: absolute;
 }
-
 .cb:hover .rainbow {
   display: flex;
   text-align: center;
   justify-content: center;
-  height: 151px;
+  height: 152px;
 }
-
 #box {
   background-color: #3D6AA2;
   width: 160px;
@@ -37,7 +34,6 @@
   top: calc(10% - 10px);
   left: calc(50% - 80px);
 }
-
 .cb:after {
   content: "";
   position: absolute;
@@ -47,9 +43,7 @@
   transform: scale(.9);
   box-shadow: 0px 0px 8px 2px #000000;
 }
-
 /* Dropdown Button */
-
 .dropbtn {
   background-color: #5BCEFA;
   color: white;
@@ -60,25 +54,19 @@
   text-align: center;
   margin: 0 auto;
 }
-
 /* Dropdown button on hover & focus */
-
 .dropbtn:hover,
 .dropbtn:focus {
   background-color: #2980B9;
 }
-
 /* The container <div> - needed to position the dropdown content */
-
 .dropdown {
   display: flex;
   justify-content: center;
   /* vertical-align: middle; */
   padding-top: calc(50vh - 51px);
 }
-
 /* Dropdown Content (Hidden by Default) */
-
 .dropdown-content {
   display: none;
   position: absolute;
@@ -89,9 +77,7 @@
   box-shadow: 0px 8px 16px 0px rgba(182, 59, 123, 0.8);
   z-index: 1;
 }
-
 /* Links inside the dropdown */
-
 .dropdown-content a {
   color: #FFFFFF;
   font-family: 'Merriweather', serif;
@@ -99,15 +85,11 @@
   text-decoration: none;
   display: block;
 }
-
 /* Change color of dropdown links on hover */
-
 .dropdown-content a:hover {
   background-color: #ddd;
 }
-
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-
 .show {
   display: block;
 }
