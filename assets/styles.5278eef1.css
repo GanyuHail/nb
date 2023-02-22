@@ -5,7 +5,8 @@
   font-size: 52px;
   position: center;
   color: #F5A9B8;
-  text-align: center;
+  text-align: justify;
+  margin-left: 10vh;
 }
 .cb {
   padding: 16px;
@@ -41,7 +42,7 @@
   bottom: 1px;
   z-index: -1;
   transform: scale(.9);
-  box-shadow: 0px 0px 8px 2px #000000;
+  /* box-shadow: 0px 0px 8px 2px #000000; */
 }
 /* Dropdown Button */
 .dropbtn {
@@ -92,4 +93,9 @@
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display: block;
+}
+@media screen and (min-width: 600px) {
+  #placeholder {
+    font-size: 20px;
+  }
 }
