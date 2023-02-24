@@ -46,17 +46,17 @@ html {
         &:first-of-type {
           bottom: 40px;
           right: 70px;
-          background: url("./dist/assets/iconreload.svg") no-repeat 50%/50% #e8e8f3;
+          background: url("./src/iconreload.svg") no-repeat 50%/50% #e8e8f3;
         }
         &:nth-of-type(2) {
           bottom: 80px;
-          background: url("./dist/assets/iconimg.svg") no-repeat 50%/ 50% #e8e8f3;
+          background: url("./src/iconimg.svg") no-repeat 50%/ 50% #e8e8f3;
           transition-delay: .05s;
         }
         &:last-of-type {
           bottom: 40px;
           right: -70px;
-          background: url("./dist/assets/iconeth.svg") no-repeat 50% 45%/50% 45% #e8e8f3;
+          background: url("./src/iconeth.svg") no-repeat 50% 45%/50% 45% #e8e8f3;
           transition-delay: .1s;
         }
       }
