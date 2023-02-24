@@ -48,17 +48,17 @@ html {
 .menu.open .button:first-of-type {
   bottom: 40px;
   right: 70px;
-  background: url("./dist/assets/iconreload.svg") no-repeat 50%/50% #e8e8f3;
+  background: url("./iconreload.8b9a2a0b.svg") no-repeat 50%/50% #e8e8f3;
 }
 .menu.open .button:nth-of-type(2) {
   bottom: 80px;
-  background: url("./dist/assets/iconimg.svg") no-repeat 50%/50% #e8e8f3;
+  background: url("./iconimg.7944fcb2.svg") no-repeat 50%/50% #e8e8f3;
   transition-delay: 0.05s;
 }
 .menu.open .button:last-of-type {
   bottom: 40px;
   right: -70px;
-  background: url("./dist/assets/iconeth.svg") no-repeat 50% 45%/50% 45% #e8e8f3;
+  background: url("./iconeth.534df06b.svg") no-repeat 50% 45%/50% 45% #e8e8f3;
   transition-delay: 0.1s;
 }
 
