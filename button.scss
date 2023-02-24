@@ -62,6 +62,13 @@ html {
       }
     }
   }
+
+
+@media all and (max-width: 767px) {
+    .menu {
+        padding: 30mm;
+    }
+  }
   
   .button {
     padding: 30pt;
