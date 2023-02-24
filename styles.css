@@ -149,3 +149,11 @@ background-size: 1800% 1800%;
     font-size: 20px;
   }
 }
+
+html {
+  background: #e8e8f3;
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
