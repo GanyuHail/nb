@@ -1,4 +1,4 @@
-import { c as client, j as jsx, R as React } from "./jsx-runtime.94186190.js";
+import { c as client, a as jsx, R as React } from "./jsx-runtime.fa502f9a.js";
 /* empty css                  */paypal.Buttons({
   createOrder: function() {
     return fetch("/create-order", {

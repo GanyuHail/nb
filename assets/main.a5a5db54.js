@@ -1,4 +1,4 @@
-import { r as react, j as jsx, c as client, R as React } from "./jsx-runtime.94186190.js";
+import { r as react, j as jsxs, a as jsx, c as client, R as React } from "./jsx-runtime.fa502f9a.js";
 if (Number.EPSILON === void 0) {
   Number.EPSILON = Math.pow(2, -52);
 }
@@ -27778,12 +27778,16 @@ function App() {
       canvas,
       antialias: true
     });
-    renderer.xrCompatible = true;
+    renderer.xr.enabled = true;
     window.addEventListener("resize", onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(VRButton.createButton(renderer));
+    const controller1 = renderer.xr.getController(0);
+    controller1.addEventListener("selectstart", onSelectStart);
+    controller1.addEventListener("selectend", onSelectEnd);
+    scene.add(controller1);
     const ambientLight = new AmbientLight(16761035, 1);
     ambientLight.castShadow = true;
     ambientLight.physicallyCorrectLights = true;
@@ -27852,6 +27856,7 @@ function App() {
     animate();
     renderer.setAnimationLoop(function() {
       renderer.render(scene, camera);
+      controls.update();
     });
     function onWindowResize() {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -27859,10 +27864,19 @@ function App() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
   }, []);
-  return /* @__PURE__ */ jsx("div", {
-    children: /* @__PURE__ */ jsx("canvas", {
+  return /* @__PURE__ */ jsxs("div", {
+    children: [/* @__PURE__ */ jsx("div", {
+      class: "vertical-center",
+      children: /* @__PURE__ */ jsx("a", {
+        href: "https://henhail.com/",
+        children: /* @__PURE__ */ jsx("button", {
+          class: "round",
+          children: "\u2190"
+        })
+      })
+    }), /* @__PURE__ */ jsx("canvas", {
       id: "myThreeJsCanvas"
-    })
+    })]
   });
 }
 const index = "";

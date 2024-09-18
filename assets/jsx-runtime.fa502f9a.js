@@ -7529,9 +7529,11 @@ reactJsxRuntime_production_min.jsxs = q;
   }
 })(jsxRuntime);
 const jsx = jsxRuntime.exports.jsx;
+const jsxs = jsxRuntime.exports.jsxs;
 export {
   React as R,
+  jsx as a,
   client as c,
-  jsx as j,
+  jsxs as j,
   react as r
 };
