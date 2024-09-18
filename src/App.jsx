@@ -27,7 +27,7 @@ function App() {
     const renderer = new THREE.WebGLRenderer({
       canvas, antialias: true
     });
-    renderer.xrCompatible = true;
+    renderer.xr.enabled = true;
     //renderer.antialias = true; 
     window.addEventListener('resize', onWindowResize, false);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -41,6 +41,11 @@ function App() {
     // controller1.addEventListener('selectstart', onSelectStart);
     // controller1.addEventListener('selectend', onSelectEnd);
     // scene.add(controller1);
+
+    const controller1 = renderer.xr.getController(0);
+    controller1.addEventListener('selectstart', onSelectStart);
+    controller1.addEventListener('selectend', onSelectEnd);
+    scene.add(controller1);
 
     // controller2 = renderer.xr.getController(1);
     // controller2.addEventListener('selectstart', onSelectStart);
@@ -239,6 +244,7 @@ function App() {
 
     renderer.setAnimationLoop(function () {
       renderer.render(scene, camera);
+      controls.update();
     });
 
     // Resize
