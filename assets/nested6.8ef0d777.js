@@ -6,14 +6,19 @@ app.use(express.static("src"));
 app.use(express.json());
 const paypal = require("@paypal/checkout-server-sdk");
 const Environment = paypal.core.LiveEnvironment;
-const paypalClient = new paypal.core.PayPalHttpClient(new Environment(process.env.PAYPAL_CLIENT_ID, process.env.PAYPAL_CLIENT_SECRET));
+const paypalClient = new paypal.core.PayPalHttpClient(
+  new Environment(
+    {}.PAYPAL_CLIENT_ID,
+    {}.PAYPAL_CLIENT_SECRET
+  )
+);
 const storeItems = /* @__PURE__ */ new Map([
   [1, { price: 100, name: "Learn React Today" }],
   [2, { price: 200, name: "Learn CSS Today" }]
 ]);
 app.get("/", (req, res) => {
   res.render("index", {
-    paypalClientId: process.env.PAYPAL_CLIENT_ID
+    paypalClientId: {}.PAYPAL_CLIENT_ID
   });
 });
 app.post("/create-order", async (req, res) => {
