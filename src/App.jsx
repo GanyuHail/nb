@@ -20,9 +20,16 @@ function App() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
-    
+
     // Add VR button for WebXR
     document.body.appendChild(VRButton.createButton(renderer));
+
+    // Add painting with texture
+    const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
+    const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
+    const paintMaterial = new THREE.MeshStandardMaterial({ map: paintTexture });
+    const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
+    scene.add(paintMesh);
 
     // Set up lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 2);
@@ -36,13 +43,6 @@ function App() {
     spotLight.target = paintMesh;
     scene.add(spotLight);
     scene.add(spotLight.target);
-
-    // Add painting with texture
-    const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
-    const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
-    const paintMaterial = new THREE.MeshStandardMaterial({ map: paintTexture });
-    const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
-    scene.add(paintMesh);
 
     // Raycaster and pointer for interaction
     const raycaster = new THREE.Raycaster();
@@ -59,7 +59,7 @@ function App() {
       // If the ray intersects with an object
       if (intersects.length > 0) {
         const intersect = intersects[0];
-        
+
         // If it's a new object, reset the previous one
         if (selectedObject !== intersect.object) {
           if (selectedObject) {
