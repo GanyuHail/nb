@@ -20028,7 +20028,7 @@ function App() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(VRButton.createButton(renderer));
-    const ambientLight = new AmbientLight(16761035, 1);
+    const ambientLight = new AmbientLight(16777215, 1);
     scene.add(ambientLight);
     const spotLight = new SpotLight(16777215, 2);
     spotLight.castShadow = true;
