@@ -19,6 +19,9 @@ function App() {
     renderer.xr.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputEncoding = THREE.sRGBEncoding;  // Enable gamma correction for better colors
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;  // Better tone mapping
+    renderer.toneMappingExposure = 1.5;  // Adjust exposure for brightness
     document.body.appendChild(renderer.domElement);
 
     // Add VR button for WebXR
@@ -27,19 +30,29 @@ function App() {
     // Add painting with texture
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
     const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
+    
+    // Update material to improve vibrancy
     const paintMaterial = new THREE.MeshStandardMaterial({ 
       map: paintTexture,
-      emissive: new THREE.Color(0x111111), // Add a subtle emissive color to enhance vibrancy
-      emissiveIntensity: 0.8 // Increase emissive intensity for better color pop
+      metalness: 0.4,  // Add slight metalness to make the surface more reflective
+      roughness: 0.3,  // Lower roughness for a shinier look
+      emissive: new THREE.Color(0x111111),  // Subtle emissive color to add vibrancy
+      emissiveIntensity: 0.8  // Intensity of emissive light
     });
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
 
+    // Create wireframe for edges
+    const edgeGeometry = new THREE.EdgesGeometry(paintGeometry); // Get geometry edges
+    const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff69b4, linewidth: 2 }); // Pink edge color
+    const wireframe = new THREE.LineSegments(edgeGeometry, edgeMaterial);
+    scene.add(wireframe);
+
     // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);  // Slightly decrease ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);  // Slightly lower ambient light to avoid washing out colors
     scene.add(ambientLight);
 
-    const spotLight = new THREE.SpotLight(0xffffff, 7);  // Increase spotlight intensity
+    const spotLight = new THREE.SpotLight(0xffffff, 10);  // Boost spotlight intensity
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);  // Position above and slightly in front of the object
     spotLight.angle = Math.PI / 6;  // Narrow the spotlight beam to focus
@@ -63,26 +76,23 @@ function App() {
       if (intersects.length > 0) {
         const intersect = intersects[0];
 
-        // If it's a new object, reset the previous one
         if (selectedObject !== intersect.object) {
           if (selectedObject) {
-            // Reset previous object color and opacity to default
-            selectedObject.material.color.set('white'); // Reset to white or original color
-            selectedObject.material.opacity = 1;
-            selectedObject.material.transparent = false;
+            selectedObject.material.opacity = 0.5;  // Reset to half transparency
+            selectedObject.material.transparent = true;  // Enable transparency
           }
 
           // Set the new selected object
           selectedObject = intersect.object;
-          selectedObject.material.color.set('pink'); // Highlight the new object with pink
-          selectedObject.material.opacity = 1;  // Ensure full opacity when selected
-          selectedObject.material.transparent = false; // Remove transparency on select
+          selectedObject.material.color.set('pink');  // Highlight with pink
+          selectedObject.material.opacity = 1;
+          selectedObject.material.transparent = false;  // Remove transparency
         }
       } else {
-        // If no object is intersected, reset the last selected object
         if (selectedObject) {
-          selectedObject.material.color.set('white'); // Reset the color to default
-          selectedObject = null;  // Clear selection
+          selectedObject.material.opacity = 0.5;  // Reset to half transparency
+          selectedObject.material.transparent = true;  // Enable transparency
+          selectedObject = null;
         }
       }
     }
