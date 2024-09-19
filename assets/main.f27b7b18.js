@@ -20035,7 +20035,7 @@ function App() {
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const frontBackMaterial = new MeshStandardMaterial({
       map: paintTexture,
-      metalness: 0.4,
+      metalness: 1,
       roughness: 0.3,
       emissive: new Color(1118481),
       emissiveIntensity: 0.8
@@ -20055,7 +20055,7 @@ function App() {
     ];
     const paintMesh = new Mesh(paintGeometry, materials);
     scene.add(paintMesh);
-    const ambientLight = new AmbientLight(16777215, 0.3);
+    const ambientLight = new AmbientLight(16777215, 1);
     scene.add(ambientLight);
     const spotLight = new SpotLight(16777215, 12);
     spotLight.castShadow = true;
@@ -20074,7 +20074,7 @@ function App() {
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0) {
         const intersect2 = intersects[0];
-        if (intersect2.object && intersect2.object.material) {
+        if (intersect2.object && intersect2.object.material && intersect2.object.material.color) {
           if (selectedObject !== intersect2.object) {
             if (selectedObject && selectedObject.material) {
               selectedObject.material.opacity = 0.5;
