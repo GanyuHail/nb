@@ -7,7 +7,6 @@ let selectedObject = null;
 
 function App() {
   useEffect(() => {
-    // Create scene
     const scene = new THREE.Scene();
 
     // Set up camera
@@ -17,7 +16,7 @@ function App() {
     // Create renderer
     const canvas = document.getElementById('myThreeJsCanvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.xr.enabled = true;  // Enable WebXR (VR)
+    renderer.xr.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
@@ -53,17 +52,35 @@ function App() {
       raycaster.setFromCamera(pointer, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
 
+      // If the ray intersects with an object
       if (intersects.length > 0) {
         const intersect = intersects[0];
+        
+        // If it's a new object, reset the previous one
         if (selectedObject !== intersect.object) {
-          if (selectedObject) selectedObject.material.color.set('white'); // Reset color
+          if (selectedObject) {
+            // Make previous object transparent
+            selectedObject.material.opacity = 0.5;  // Half transparent
+            selectedObject.material.transparent = true;  // Enable transparency
+          }
+
+          // Set the new selected object
           selectedObject = intersect.object;
-          selectedObject.material.color.set('pink'); // Highlight selected object
+          selectedObject.material.color.set('pink'); // Highlight the new object with pink
+          selectedObject.material.opacity = 1;  // Ensure full opacity when selected
+          selectedObject.material.transparent = false; // Remove transparency on select
+        }
+      } else {
+        // If no object is intersected, make the last selected object transparent
+        if (selectedObject) {
+          selectedObject.material.opacity = 0.5;  // Set the opacity to half (transparent)
+          selectedObject.material.transparent = true; // Enable transparency
+          selectedObject = null;  // Clear selection
         }
       }
     }
 
-    // Handle click or touch events for navigation
+    // Handle clicks or touch events for navigation
     function handleNavigation() {
       if (selectedObject) {
         window.location.href = "/nb/page2.html";  // Navigate to another page
@@ -79,8 +96,8 @@ function App() {
 
     // Animation loop for rendering and controls update
     renderer.setAnimationLoop(() => {
-      controls.update(); // Update camera controls
-      renderer.render(scene, camera);  // Render the scene with camera
+      controls.update();  // Update camera controls
+      renderer.render(scene, camera);  // Render the scene with the camera
     });
 
     // Handle window resizing
