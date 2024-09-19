@@ -25,13 +25,17 @@ function App() {
     document.body.appendChild(VRButton.createButton(renderer));
 
     // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1);  
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
 
-    const spotLight = new THREE.SpotLight(0xffffff, 2);
+    const spotLight = new THREE.SpotLight(0xffffff, 5);
     spotLight.castShadow = true;
-    spotLight.position.set(12, 64, 32);
+    spotLight.position.set(0, 100, 100);  // Position above and slightly in front of the object
+    spotLight.angle = Math.PI / 6;  // Narrow the spotlight beam to focus
+    spotLight.penumbra = 0.1;  // Soft edges for the spotlight
+    spotLight.target = paintMesh;
     scene.add(spotLight);
+    scene.add(spotLight.target);
 
     // Add painting with texture
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
