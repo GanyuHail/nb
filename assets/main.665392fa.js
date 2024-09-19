@@ -20028,12 +20028,16 @@ function App() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(VRButton.createButton(renderer));
-    const ambientLight = new AmbientLight(16777215, 1);
+    const ambientLight = new AmbientLight(16777215, 2);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 2);
+    const spotLight = new SpotLight(16777215, 5);
     spotLight.castShadow = true;
-    spotLight.position.set(12, 64, 32);
+    spotLight.position.set(0, 100, 100);
+    spotLight.angle = Math.PI / 6;
+    spotLight.penumbra = 0.1;
+    spotLight.target = paintMesh;
     scene.add(spotLight);
+    scene.add(spotLight.target);
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const paintMaterial = new MeshStandardMaterial({
