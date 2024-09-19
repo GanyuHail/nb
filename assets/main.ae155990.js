@@ -20026,38 +20026,20 @@ function App() {
     renderer.xr.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.outputEncoding = void 0;
-    renderer.toneMapping = ReinhardToneMapping;
-    renderer.toneMappingExposure = 1.8;
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(VRButton.createButton(renderer));
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
-    const frontBackMaterial = new MeshStandardMaterial({
+    const paintMaterial = new MeshStandardMaterial({
       map: paintTexture,
-      metalness: 1,
-      roughness: 1,
       emissive: new Color(1118481),
-      emissiveIntensity: 1
+      emissiveIntensity: 0.8
     });
-    const sideMaterial = new MeshStandardMaterial({
-      color: 16738740,
-      metalness: 0.5,
-      roughness: 0.2
-    });
-    const materials = [
-      sideMaterial,
-      sideMaterial,
-      sideMaterial,
-      sideMaterial,
-      frontBackMaterial,
-      frontBackMaterial
-    ];
-    const paintMesh = new Mesh(paintGeometry, materials);
+    const paintMesh = new Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
-    const ambientLight = new AmbientLight(16777215, 1);
+    const ambientLight = new AmbientLight(16777215, 1.5);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 12);
+    const spotLight = new SpotLight(16777215, 7);
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);
     spotLight.angle = Math.PI / 6;
