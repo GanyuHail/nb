@@ -20031,17 +20031,19 @@ function App() {
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const paintMaterial = new MeshStandardMaterial({
-      map: paintTexture
+      map: paintTexture,
+      emissive: new Color(1118481),
+      emissiveIntensity: 0.8
     });
     const paintMesh = new Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
-    const ambientLight = new AmbientLight(16777215, 2);
+    const ambientLight = new AmbientLight(16777215, 1.5);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 5);
+    const spotLight = new SpotLight(16777215, 7);
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);
     spotLight.angle = Math.PI / 6;
-    spotLight.penumbra = 0.1;
+    spotLight.penumbra = 0.2;
     spotLight.target = paintMesh;
     scene.add(spotLight);
     scene.add(spotLight.target);
@@ -20056,8 +20058,9 @@ function App() {
         const intersect2 = intersects[0];
         if (selectedObject !== intersect2.object) {
           if (selectedObject) {
-            selectedObject.material.opacity = 0.5;
-            selectedObject.material.transparent = true;
+            selectedObject.material.color.set("white");
+            selectedObject.material.opacity = 1;
+            selectedObject.material.transparent = false;
           }
           selectedObject = intersect2.object;
           selectedObject.material.color.set("pink");
@@ -20066,8 +20069,7 @@ function App() {
         }
       } else {
         if (selectedObject) {
-          selectedObject.material.opacity = 0.5;
-          selectedObject.material.transparent = true;
+          selectedObject.material.color.set("white");
           selectedObject = null;
         }
       }
