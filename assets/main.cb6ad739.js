@@ -20036,9 +20036,9 @@ function App() {
     const frontBackMaterial = new MeshStandardMaterial({
       map: paintTexture,
       metalness: 1,
-      roughness: 0.3,
+      roughness: 1,
       emissive: new Color(1118481),
-      emissiveIntensity: 0.8
+      emissiveIntensity: 1
     });
     const sideMaterial = new MeshStandardMaterial({
       color: 16738740,
@@ -20076,8 +20076,9 @@ function App() {
         const intersect2 = intersects[0];
         if (selectedObject !== intersect2.object) {
           if (selectedObject) {
-            selectedObject.material.opacity = 0.5;
-            selectedObject.material.transparent = true;
+            selectedObject.material.color.set("white");
+            selectedObject.material.opacity = 1;
+            selectedObject.material.transparent = false;
           }
           selectedObject = intersect2.object;
           selectedObject.material.color.set("pink");
@@ -20086,8 +20087,7 @@ function App() {
         }
       } else {
         if (selectedObject) {
-          selectedObject.material.opacity = 0.5;
-          selectedObject.material.transparent = true;
+          selectedObject.material.color.set("white");
           selectedObject = null;
         }
       }
