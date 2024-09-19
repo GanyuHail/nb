@@ -27,19 +27,23 @@ function App() {
     // Add painting with texture
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
     const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
-    const paintMaterial = new THREE.MeshStandardMaterial({ map: paintTexture });
+    const paintMaterial = new THREE.MeshStandardMaterial({ 
+      map: paintTexture,
+      emissive: new THREE.Color(0x111111), // Add a subtle emissive color to enhance vibrancy
+      emissiveIntensity: 0.8 // Increase emissive intensity for better color pop
+    });
     const paintMesh = new THREE.Mesh(paintGeometry, paintMaterial);
     scene.add(paintMesh);
 
     // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);  // Slightly decrease ambient light
     scene.add(ambientLight);
 
-    const spotLight = new THREE.SpotLight(0xffffff, 5);
+    const spotLight = new THREE.SpotLight(0xffffff, 7);  // Increase spotlight intensity
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);  // Position above and slightly in front of the object
     spotLight.angle = Math.PI / 6;  // Narrow the spotlight beam to focus
-    spotLight.penumbra = 0.1;  // Soft edges for the spotlight
+    spotLight.penumbra = 0.2;  // Soft edges for the spotlight
     spotLight.target = paintMesh;
     scene.add(spotLight);
     scene.add(spotLight.target);
@@ -56,16 +60,16 @@ function App() {
       raycaster.setFromCamera(pointer, camera);
       const intersects = raycaster.intersectObjects(scene.children, true);
 
-      // If the ray intersects with an object
       if (intersects.length > 0) {
         const intersect = intersects[0];
 
         // If it's a new object, reset the previous one
         if (selectedObject !== intersect.object) {
           if (selectedObject) {
-            // Make previous object transparent
-            selectedObject.material.opacity = 0.5;  // Half transparent
-            selectedObject.material.transparent = true;  // Enable transparency
+            // Reset previous object color and opacity to default
+            selectedObject.material.color.set('white'); // Reset to white or original color
+            selectedObject.material.opacity = 1;
+            selectedObject.material.transparent = false;
           }
 
           // Set the new selected object
@@ -75,10 +79,9 @@ function App() {
           selectedObject.material.transparent = false; // Remove transparency on select
         }
       } else {
-        // If no object is intersected, make the last selected object transparent
+        // If no object is intersected, reset the last selected object
         if (selectedObject) {
-          selectedObject.material.opacity = 0.5;  // Set the opacity to half (transparent)
-          selectedObject.material.transparent = true; // Enable transparency
+          selectedObject.material.color.set('white'); // Reset the color to default
           selectedObject = null;  // Clear selection
         }
       }
