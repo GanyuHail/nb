@@ -20032,8 +20032,8 @@ function App() {
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     const frontBackMaterial = new MeshStandardMaterial({
       map: paintTexture,
-      metalness: 0.4,
-      roughness: 0.3,
+      metalness: 0.8,
+      roughness: 0.8,
       emissive: new Color(1118481),
       emissiveIntensity: 0.8
     });
