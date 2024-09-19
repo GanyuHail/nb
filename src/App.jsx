@@ -9,11 +9,11 @@ function App() {
   useEffect(() => {
     const scene = new THREE.Scene();
 
-    let windowHalfX = window.innerWidth / 2;
-    let windowHalfY = window.innerHeight / 2;
+    // Camera setup
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 500);
     camera.position.z = 80;
 
+    // Canvas setup
     const canvas = document.getElementById('myThreeJsCanvas');
     const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
     renderer.xr.enabled = true;
@@ -30,7 +30,7 @@ function App() {
     spotLight.position.set(12, 64, 32);
     scene.add(spotLight);
 
-    // Painting
+    // Painting (texture)
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
     const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
     const paintMaterial = new THREE.MeshStandardMaterial({ map: paintTexture });
@@ -41,6 +41,7 @@ function App() {
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
 
+    // Object selection via raycasting
     function onPointerMove(event) {
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
@@ -58,6 +59,7 @@ function App() {
       }
     }
 
+    // Handle clicks and touch events
     function handleNavigation() {
       if (selectedObject) {
         window.location.href = "/nb/page2.html";
@@ -68,21 +70,23 @@ function App() {
     window.addEventListener('click', handleNavigation);
     window.addEventListener('touchend', handleNavigation);
 
+    // Orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
 
+    // Animation loop
     renderer.setAnimationLoop(() => {
       controls.update();
       renderer.render(scene, camera);
     });
 
+    // Window resize handling
     function onWindowResize() {
-      windowHalfX = window.innerWidth / 2;
-      windowHalfY = window.innerHeight / 2;
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
     }
     window.addEventListener('resize', onWindowResize, false);
+
   }, []);
 
   return (
