@@ -26,7 +26,7 @@ function App() {
     document.body.appendChild(VRButton.createButton(renderer));
 
     // Set up lighting
-    const ambientLight = new THREE.AmbientLight(0xFFC0CB, 1);  // Pinkish ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);  
     scene.add(ambientLight);
 
     const spotLight = new THREE.SpotLight(0xffffff, 2);
