@@ -20051,10 +20051,20 @@ function App() {
       if (intersects.length > 0) {
         const intersect2 = intersects[0];
         if (selectedObject !== intersect2.object) {
-          if (selectedObject)
-            selectedObject.material.color.set("white");
+          if (selectedObject) {
+            selectedObject.material.opacity = 0.5;
+            selectedObject.material.transparent = true;
+          }
           selectedObject = intersect2.object;
           selectedObject.material.color.set("pink");
+          selectedObject.material.opacity = 1;
+          selectedObject.material.transparent = false;
+        }
+      } else {
+        if (selectedObject) {
+          selectedObject.material.opacity = 0.5;
+          selectedObject.material.transparent = true;
+          selectedObject = null;
         }
       }
     }
