@@ -20027,8 +20027,8 @@ function App() {
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.outputEncoding = void 0;
-    renderer.toneMapping = LinearToneMapping;
-    renderer.toneMappingExposure = 1;
+    renderer.toneMapping = ReinhardToneMapping;
+    renderer.toneMappingExposure = 1.8;
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(VRButton.createButton(renderer));
     const paintGeometry = new BoxGeometry(50, 50, 1);
@@ -20055,9 +20055,9 @@ function App() {
     ];
     const paintMesh = new Mesh(paintGeometry, materials);
     scene.add(paintMesh);
-    const ambientLight = new AmbientLight(16777215, 0.5);
+    const ambientLight = new AmbientLight(16777215, 0.3);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 10);
+    const spotLight = new SpotLight(16777215, 12);
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);
     spotLight.angle = Math.PI / 6;
@@ -20074,18 +20074,20 @@ function App() {
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0) {
         const intersect2 = intersects[0];
-        if (selectedObject !== intersect2.object) {
-          if (selectedObject) {
-            selectedObject.material.opacity = 0.5;
-            selectedObject.material.transparent = true;
+        if (intersect2.object && intersect2.object.material) {
+          if (selectedObject !== intersect2.object) {
+            if (selectedObject && selectedObject.material) {
+              selectedObject.material.opacity = 0.5;
+              selectedObject.material.transparent = true;
+            }
+            selectedObject = intersect2.object;
+            selectedObject.material.color.set("pink");
+            selectedObject.material.opacity = 1;
+            selectedObject.material.transparent = false;
           }
-          selectedObject = intersect2.object;
-          selectedObject.material.color.set("pink");
-          selectedObject.material.opacity = 1;
-          selectedObject.material.transparent = false;
         }
       } else {
-        if (selectedObject) {
+        if (selectedObject && selectedObject.material) {
           selectedObject.material.opacity = 0.5;
           selectedObject.material.transparent = true;
           selectedObject = null;
