@@ -37,9 +37,9 @@ function App() {
     const frontBackMaterial = new THREE.MeshStandardMaterial({
       map: paintTexture,
       metalness: 1,
-      roughness: 0.3,
+      roughness: 1,
       emissive: new THREE.Color(0x111111),
-      emissiveIntensity: 0.8
+      emissiveIntensity: 1,
     });
 
     // Material for the pink side faces (including top and bottom)
@@ -79,40 +79,42 @@ function App() {
     const raycaster = new THREE.Raycaster();
     const pointer = new THREE.Vector2();
 
-// Handle pointer movement (hovering)
-function onPointerMove(event) {
-  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-  pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
-  raycaster.setFromCamera(pointer, camera);
-  const intersects = raycaster.intersectObjects(scene.children, true);
+  
+    // Handle pointer movement (hovering)
+    function onPointerMove(event) {
+      pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+      pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
-  if (intersects.length > 0) {
-    const intersect = intersects[0];
+      raycaster.setFromCamera(pointer, camera);
+      const intersects = raycaster.intersectObjects(scene.children, true);
 
-    // Ensure intersected object and its material exist
-    if (intersect.object && intersect.object.material && intersect.object.material.color) {
-      if (selectedObject !== intersect.object) {
-        if (selectedObject && selectedObject.material) {
-          selectedObject.material.opacity = 0.5;  // Reset to half transparency
-          selectedObject.material.transparent = true;  // Enable transparency
+      if (intersects.length > 0) {
+        const intersect = intersects[0];
+
+        // If it's a new object, reset the previous one
+        if (selectedObject !== intersect.object) {
+          if (selectedObject) {
+            // Reset previous object color and opacity to default
+            selectedObject.material.color.set('white'); // Reset to white or original color
+            selectedObject.material.opacity = 1;
+            selectedObject.material.transparent = false;
+          }
+
+          // Set the new selected object
+          selectedObject = intersect.object;
+          selectedObject.material.color.set('pink'); // Highlight the new object with pink
+          selectedObject.material.opacity = 1;  // Ensure full opacity when selected
+          selectedObject.material.transparent = false; // Remove transparency on select
         }
-
-        // Set the new selected object
-        selectedObject = intersect.object;
-        selectedObject.material.color.set('pink');  // Highlight with pink
-        selectedObject.material.opacity = 1;
-        selectedObject.material.transparent = false;  // Remove transparency
+      } else {
+        // If no object is intersected, reset the last selected object
+        if (selectedObject) {
+          selectedObject.material.color.set('white'); // Reset the color to default
+          selectedObject = null;  // Clear selection
+        }
       }
     }
-  } else {
-    if (selectedObject && selectedObject.material) {
-      selectedObject.material.opacity = 0.5;  // Reset to half transparency
-      selectedObject.material.transparent = true;  // Enable transparency
-      selectedObject = null;
-    }
-  }
-}
 
     // Handle clicks or touch events for navigation
     function handleNavigation() {
@@ -124,7 +126,6 @@ function onPointerMove(event) {
     window.addEventListener('pointermove', onPointerMove);
     window.addEventListener('click', handleNavigation);
     window.addEventListener('touchend', handleNavigation);
-
     // OrbitControls setup
     const controls = new OrbitControls(camera, renderer.domElement);
 
