@@ -20030,27 +20030,14 @@ function App() {
     document.body.appendChild(VRButton.createButton(renderer));
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
-    const frontBackMaterial = new MeshStandardMaterial({
+    const material = new MeshStandardMaterial({
       map: paintTexture,
       metalness: 0.8,
       roughness: 0.8,
       emissive: new Color(1118481),
       emissiveIntensity: 0.8
     });
-    const sideMaterial = new MeshStandardMaterial({
-      color: 16738740,
-      metalness: 0.5,
-      roughness: 0.2
-    });
-    const materials = [
-      sideMaterial,
-      sideMaterial,
-      sideMaterial,
-      sideMaterial,
-      frontBackMaterial,
-      frontBackMaterial
-    ];
-    const paintMesh = new Mesh(paintGeometry, materials);
+    const paintMesh = new Mesh(paintGeometry, material);
     scene.add(paintMesh);
     const ambientLight = new AmbientLight(16777215, 1.5);
     scene.add(ambientLight);
@@ -20074,15 +20061,15 @@ function App() {
         if (intersect2.object && intersect2.object.material && intersect2.object.material.color) {
           if (selectedObject !== intersect2.object) {
             if (selectedObject) {
-              selectedObject.material.color.set(16738740);
+              selectedObject.material.color.set(16777215);
             }
             selectedObject = intersect2.object;
-            selectedObject.material.color.set("green");
+            selectedObject.material.color.set("pink");
           }
         }
       } else {
         if (selectedObject) {
-          selectedObject.material.color.set(16738740);
+          selectedObject.material.color.set(16777215);
           selectedObject = null;
         }
       }
