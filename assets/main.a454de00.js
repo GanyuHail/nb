@@ -20030,12 +20030,12 @@ function App() {
     document.body.appendChild(VRButton.createButton(renderer));
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
+    paintTexture.colourSpace = SRGBColorSpace;
     const material = new MeshStandardMaterial({
       map: paintTexture,
       metalness: 0.8,
       roughness: 0.8,
       emissive: new Color(1118481),
-      colorSpace: SRGBColorSpace,
       emissiveIntensity: 0.8
     });
     const paintMesh = new Mesh(paintGeometry, material);
