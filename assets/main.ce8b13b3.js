@@ -20071,13 +20071,13 @@ function App() {
       const intersects = raycaster.intersectObjects(scene.children, true);
       if (intersects.length > 0) {
         const intersect2 = intersects[0];
-        if (intersect2.object.material && intersect2.object.material.color) {
+        if (intersect2.object && intersect2.object.material && intersect2.object.material.color) {
           if (selectedObject !== intersect2.object) {
             if (selectedObject) {
               selectedObject.material.color.set(16738740);
             }
             selectedObject = intersect2.object;
-            selectedObject.material.color.set("pink");
+            selectedObject.material.color.set("green");
           }
         }
       } else {
