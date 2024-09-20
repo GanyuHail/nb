@@ -20074,25 +20074,22 @@ function App() {
         if (intersect2.object.material && intersect2.object.material.color) {
           if (selectedObject !== intersect2.object) {
             if (selectedObject) {
-              selectedObject.material.opacity = 0.5;
-              selectedObject.material.transparent = true;
+              selectedObject.material.color.set(16738740);
             }
             selectedObject = intersect2.object;
             selectedObject.material.color.set("pink");
-            selectedObject.material.opacity = 1;
-            selectedObject.material.transparent = false;
           }
         }
       } else {
         if (selectedObject) {
-          selectedObject.material.opacity = 0.5;
-          selectedObject.material.transparent = true;
+          selectedObject.material.color.set(16738740);
           selectedObject = null;
         }
       }
     }
-    function handleNavigation() {
-      if (selectedObject) {
+    function handleNavigation(event) {
+      if (selectedObject && selectedObject.material) {
+        console.log("Object clicked:", selectedObject);
         window.location.href = "/nb/page2.html";
       }
     }
