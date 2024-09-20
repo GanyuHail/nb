@@ -20035,6 +20035,7 @@ function App() {
       metalness: 0.8,
       roughness: 0.8,
       emissive: new Color(1118481),
+      colorSpace: SRGBColorSpace,
       emissiveIntensity: 0.8
     });
     const paintMesh = new Mesh(paintGeometry, material);
