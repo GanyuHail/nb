@@ -20040,7 +20040,7 @@ function App() {
     scene.add(paintMesh);
     const ambientLight = new AmbientLight(16777215, 1.5);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 100);
+    const spotLight = new SpotLight(16777215, 50);
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);
     spotLight.angle = Math.PI / 6;
