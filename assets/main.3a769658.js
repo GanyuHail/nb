@@ -18447,15 +18447,14 @@ class Scene extends Object3D {
     return data;
   }
 }
-class MeshStandardMaterial extends Material {
+class MeshPhongMaterial extends Material {
   constructor(parameters) {
     super();
-    this.isMeshStandardMaterial = true;
-    this.defines = { "STANDARD": "" };
-    this.type = "MeshStandardMaterial";
+    this.isMeshPhongMaterial = true;
+    this.type = "MeshPhongMaterial";
     this.color = new Color(16777215);
-    this.roughness = 1;
-    this.metalness = 0;
+    this.specular = new Color(1118481);
+    this.shininess = 30;
     this.map = null;
     this.lightMap = null;
     this.lightMapIntensity = 1;
@@ -18472,12 +18471,13 @@ class MeshStandardMaterial extends Material {
     this.displacementMap = null;
     this.displacementScale = 1;
     this.displacementBias = 0;
-    this.roughnessMap = null;
-    this.metalnessMap = null;
+    this.specularMap = null;
     this.alphaMap = null;
     this.envMap = null;
     this.envMapRotation = new Euler();
-    this.envMapIntensity = 1;
+    this.combine = MultiplyOperation;
+    this.reflectivity = 1;
+    this.refractionRatio = 0.98;
     this.wireframe = false;
     this.wireframeLinewidth = 1;
     this.wireframeLinecap = "round";
@@ -18488,10 +18488,9 @@ class MeshStandardMaterial extends Material {
   }
   copy(source) {
     super.copy(source);
-    this.defines = { "STANDARD": "" };
     this.color.copy(source.color);
-    this.roughness = source.roughness;
-    this.metalness = source.metalness;
+    this.specular.copy(source.specular);
+    this.shininess = source.shininess;
     this.map = source.map;
     this.lightMap = source.lightMap;
     this.lightMapIntensity = source.lightMapIntensity;
@@ -18508,12 +18507,13 @@ class MeshStandardMaterial extends Material {
     this.displacementMap = source.displacementMap;
     this.displacementScale = source.displacementScale;
     this.displacementBias = source.displacementBias;
-    this.roughnessMap = source.roughnessMap;
-    this.metalnessMap = source.metalnessMap;
+    this.specularMap = source.specularMap;
     this.alphaMap = source.alphaMap;
     this.envMap = source.envMap;
     this.envMapRotation.copy(source.envMapRotation);
-    this.envMapIntensity = source.envMapIntensity;
+    this.combine = source.combine;
+    this.reflectivity = source.reflectivity;
+    this.refractionRatio = source.refractionRatio;
     this.wireframe = source.wireframe;
     this.wireframeLinewidth = source.wireframeLinewidth;
     this.wireframeLinecap = source.wireframeLinecap;
@@ -20031,12 +20031,10 @@ function App() {
     const paintGeometry = new BoxGeometry(50, 50, 1);
     const paintTexture = new TextureLoader().load("https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg");
     paintTexture.colourSpace = LinearSRGBColorSpace;
-    const material = new MeshStandardMaterial({
+    const material = new MeshPhongMaterial({
       map: paintTexture,
       metalness: 1.5,
-      roughness: 1.5,
-      emissive: new Color(1118481),
-      emissiveIntensity: 7.5
+      roughness: 1.5
     });
     const paintMesh = new Mesh(paintGeometry, material);
     scene.add(paintMesh);
