@@ -20036,13 +20036,13 @@ function App() {
       metalness: 1.5,
       roughness: 1.5,
       emissive: new Color(1118481),
-      emissiveIntensity: 15
+      emissiveIntensity: 7.5
     });
     const paintMesh = new Mesh(paintGeometry, material);
     scene.add(paintMesh);
     const ambientLight = new AmbientLight(16777215, 1.5);
     scene.add(ambientLight);
-    const spotLight = new SpotLight(16777215, 7);
+    const spotLight = new SpotLight(16777215, 100);
     spotLight.castShadow = true;
     spotLight.position.set(0, 100, 100);
     spotLight.angle = Math.PI / 6;
