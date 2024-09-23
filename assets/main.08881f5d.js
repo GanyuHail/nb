@@ -20033,10 +20033,10 @@ function App() {
     paintTexture.colourSpace = SRGBColorSpace;
     const material = new MeshStandardMaterial({
       map: paintTexture,
-      metalness: 0.8,
-      roughness: 0.8,
+      metalness: 1.5,
+      roughness: 1.5,
       emissive: new Color(1118481),
-      emissiveIntensity: 0.8
+      emissiveIntensity: 15
     });
     const paintMesh = new Mesh(paintGeometry, material);
     scene.add(paintMesh);
