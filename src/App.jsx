@@ -27,7 +27,7 @@ function App() {
     // Add painting with texture
     const paintGeometry = new THREE.BoxGeometry(50, 50, 1);
     const paintTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/GanyuHail/nb/main/src/weOpMin.jpg');
-    paintTexture.colourSpace = THREE.LinearSRGBColorSpace; // was without linear
+    paintTexture.colourSpace = THREE.SRGBColorSpace; // removed linear
 
     // Material for the front and back faces (with texture)
     const material = new THREE.MeshPhongMaterial({ // was MeshStandardMat
